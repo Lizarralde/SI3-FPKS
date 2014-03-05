@@ -1,0 +1,11 @@
+.classpath
+.idea
+.project
+.settings/
+.sonar/
+issues
+bin/
+out/
+*.class
+*.iml
+*.vpp
