@@ -1,3 +1,5 @@
+package devint.view;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,28 +11,43 @@ public class TargetObjectView implements GameObjectView {
     private Integer x;
     private Integer y;
     private Integer id;
-    private String name;
+    private String label;
+
+    private Rectangle targetArea;
 
     public TargetObjectView(){
         try {
             img = ImageIO.read(new File("resources\\\\untitled.jpg"));
+            x = 0;
+            y = 0;
+            updateRectangle();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private final void updateRectangle() {
+        this.targetArea = new Rectangle(x, y, x+img.getWidth(), y+img.getHeight());
+    }
+
     @Override
     public void paint(Graphics2D g) {
         g.drawImage(img, null, x, y);
+        if(label != null){
+            g.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
+            g.setColor(new Color(0x88, 0x00, 0x88));
+            g.drawString(label, (x + img.getWidth()/5), (y+img.getHeight()/4) );
+        }
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public void setLabel(String s) {
+        this.label = s;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getLabel() {
+        return label;
     }
 
     @Override
@@ -52,11 +69,28 @@ public class TargetObjectView implements GameObjectView {
     public void setPosition(Dimension location) {
         x = location.width;
         y = location.height;
+        updateRectangle();
     }
 
     @Override
     public void setMovement(Dimension delta) {
         x+=delta.width;
         y+=delta.height;
+        updateRectangle();
+    }
+
+    @Override
+    public boolean isOverlay() {
+        return false;
+    }
+
+    @Override
+    public boolean isHit(Point location) {
+        return this.targetArea.contains(location);
+    }
+
+    @Override
+    public void doAnimation(String animation) {
+        return;
     }
 }
