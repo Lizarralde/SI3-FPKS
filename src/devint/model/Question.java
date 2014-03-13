@@ -1,4 +1,4 @@
-package devint.view;
+package devint.model;
 
 import java.util.List;
 
@@ -30,16 +30,6 @@ public class Question {
         this.theme = theme;
     }
 
-    public String getContent() {
-
-        return content;
-    }
-
-    private void setContent(String content) {
-
-        this.content = content;
-    }
-
     public List<String> getAnswers() {
 
         return answers;
@@ -50,12 +40,22 @@ public class Question {
         this.answers = answers;
     }
 
+    public String getContent() {
+
+        return content;
+    }
+
+    private void setContent(String content) {
+
+        this.content = content;
+    }
+
     public Question(Difficulties difficulty, Themes theme, String content,
             List<String> answers) {
 
         this.setDifficulty(difficulty);
         this.setTheme(theme);
-        this.setContent(content);
         this.setAnswers(answers);
+        this.setContent(content);
     }
 }

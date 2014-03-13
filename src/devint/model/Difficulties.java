@@ -1,4 +1,6 @@
-package devint.view;
+package devint.model;
+
+import devint.config.Config;
 
 public enum Difficulties {
 

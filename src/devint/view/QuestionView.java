@@ -1,7 +1,5 @@
 package devint.view;
 
-import javafx.scene.text.FontWeight;
-
 import java.awt.*;
 
 public class QuestionView implements GameObjectView {
