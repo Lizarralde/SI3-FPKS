@@ -1,4 +1,4 @@
-package devint.view;
+package devint.model;
 
 public enum Themes {
 
