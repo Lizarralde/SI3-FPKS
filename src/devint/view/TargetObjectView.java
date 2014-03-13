@@ -15,7 +15,7 @@ public class TargetObjectView implements GameObjectView {
 
     private Rectangle targetArea;
 
-    public TargetObjectView(){
+    public TargetObjectView() {
         try {
             img = ImageIO.read(new File("resources\\\\untitled.jpg"));
             x = 0;
@@ -27,16 +27,18 @@ public class TargetObjectView implements GameObjectView {
     }
 
     private final void updateRectangle() {
-        this.targetArea = new Rectangle(x, y, x+img.getWidth(), y+img.getHeight());
+        this.targetArea = new Rectangle(x, y, x + img.getWidth(), y + img.getHeight());
     }
 
     @Override
     public void paint(Graphics2D g) {
         g.drawImage(img, null, x, y);
-        if(label != null){
-            g.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
+        if (label != null) {
+            g.setFont(new Font("Segoe UI Light", Font.BOLD, 30));
             g.setColor(new Color(0x88, 0x00, 0x88));
-            g.drawString(label, (x + img.getWidth()/5), (y+img.getHeight()/4) );
+            Integer deltaX = (img.getWidth() - (30*label.length())) /2;
+            Integer deltaY = (img.getHeight() - (30 * label.length())) /2;
+            g.drawString(label, x + deltaX, y + deltaY);
         }
     }
 
@@ -61,7 +63,7 @@ public class TargetObjectView implements GameObjectView {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return "target";
     }
 
@@ -74,8 +76,8 @@ public class TargetObjectView implements GameObjectView {
 
     @Override
     public void setMovement(Dimension delta) {
-        x+=delta.width;
-        y+=delta.height;
+        x += delta.width;
+        y += delta.height;
         updateRectangle();
     }
 

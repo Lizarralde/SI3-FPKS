@@ -36,14 +36,18 @@ public class GameView extends JPanel implements Observer {
     }
 
     public void addNewGameObject(GameObjectView objectView){
-        gameObjects.add(objectView);
+        synchronized (gameObjects){
+            gameObjects.add(objectView);
+        }
     }
 
     public void removeGameObject(String name){
-        for(GameObjectView w : gameObjects){
-            if(w.getLabel().equals(name)){
-                gameObjects.remove(w);
-                return;
+        synchronized (gameObjects){
+            for(GameObjectView w : gameObjects){
+                if(w.getLabel().equals(name)){
+                    gameObjects.remove(w);
+                    return;
+                }
             }
         }
     }
@@ -90,7 +94,7 @@ public class GameView extends JPanel implements Observer {
         }
 
         if(state.containsKey("fire")){
-            processFireEvent((Point)state.get("fire"));
+            processFireEvent((Point)state.get("fire"), this.getParent().getLocationOnScreen());
         }
 
         if(state.containsKey("animation")){
@@ -103,15 +107,21 @@ public class GameView extends JPanel implements Observer {
             for(GameObjectView gov : gameObjects){
                 if(gov.getType().equals("ironsight")){
                     gov.doAnimation("fire");
+                    return;
                 }
             }
         }
     }
 
-    private void processFireEvent(Point fire) {
-        for(GameObjectView gov : gameObjects){
-            if(!gov.isOverlay() && gov.getType().equals("target") && gov.isHit(fire)){
-                gameObjects.remove(gov);
+    private void processFireEvent(Point fire, Point locationOnScreen) {
+        Point w = new Point(fire.x - locationOnScreen.x, fire.y - locationOnScreen.y);
+        synchronized (gameObjects){
+            Iterator<GameObjectView> gameObjectViewIterator = gameObjects.iterator();
+            while(gameObjectViewIterator.hasNext()){
+                GameObjectView gov = gameObjectViewIterator.next();
+                if(!gov.isOverlay() && gov.getType().equals("target") && gov.isHit(w)){
+                    gameObjects.remove(gov);
+                }
             }
         }
     }
@@ -131,11 +141,16 @@ public class GameView extends JPanel implements Observer {
     private void moveObjects(Map<String, Object> state) {
         for(Map<String, Object> move : (List<Map<String, Object>>) state.get("move")){
             GameObjectView gameObject = getGameObject((Integer)move.get("id"));
-            if(gameObject != null){
-                if(move.containsKey("absolute")){
-                    gameObject.setPosition((Dimension)move.get("absolute"));
-                } else if(move.containsKey("relative")){
-                    gameObject.setMovement((Dimension)move.get("relative"));
+            if(gameObject != null) {
+                if (move.containsKey("absolute")) {
+                    Dimension newPosition = (Dimension) move.get("absolute");
+                    if (move.containsKey("doCorrection")) {
+                        newPosition.setSize(newPosition.width - this.getParent().getLocationOnScreen().x,
+                                newPosition.height - this.getParent().getLocationOnScreen().y);
+                    }
+                    gameObject.setPosition(newPosition);
+                } else if (move.containsKey("relative")) {
+                    gameObject.setMovement((Dimension) move.get("relative"));
                 }
             }
         }

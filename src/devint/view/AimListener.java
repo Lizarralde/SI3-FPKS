@@ -18,6 +18,7 @@ public class AimListener extends Observable implements MouseMotionListener, Mous
         HashMap<String, Object> move1 = new HashMap<>();
         move1.put("absolute", new Dimension(e.getLocationOnScreen().x, e.getLocationOnScreen().y));
         move1.put("id", -1);
+        move1.put("doCorrection", Boolean.TRUE);
         java.util.List<Map<String, Object>> move = new LinkedList<>();
         move.add(move1);
         w.put("move", move);

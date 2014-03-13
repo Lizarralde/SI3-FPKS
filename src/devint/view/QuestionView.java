@@ -1,7 +1,5 @@
 package devint.view;
 
-import javafx.scene.text.FontWeight;
-
 import java.awt.*;
 
 public class QuestionView implements GameObjectView {
@@ -13,16 +11,18 @@ public class QuestionView implements GameObjectView {
     private Dimension size;
 
     public QuestionView(){
-        location = new Point(0, 800);
+        location = new Point(0, 600);
         size = new Dimension(1, 1);
     }
 
     @Override
     public void paint(Graphics2D g) {
         Rectangle w = g.getClipBounds();
-        g.drawRect(location.x, location.y, (int)(size.width * w.getWidth()), (int)(size.height * w.getHeight()));
+        g.setColor(new Color(0xFF, 0xB8, 0xD8));
+        g.fillRect(location.x, location.y, (int)(size.width * w.getWidth()), (int)(size.height * w.getHeight()));
         g.setFont(new Font("Segoe UI Light", Font.BOLD, 60));
-        g.drawString(questionText, location.x + 10, location.y+10);
+        g.setColor(new Color(0xFF, 0x00, 0xFF));
+        g.drawString(questionText, location.x + 30, location.y + 50);
     }
 
     @Override
