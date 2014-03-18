@@ -9,7 +9,7 @@ import java.util.*;
 public class AimListener extends Observable implements MouseMotionListener, MouseListener {
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        mouseMoved(e);
     }
 
     @Override
@@ -29,7 +29,12 @@ public class AimListener extends Observable implements MouseMotionListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e){
         HashMap<String, Object> w = new HashMap<>();
+        w.put("animation", "fire");
         w.put("fire", e.getLocationOnScreen());
 
         setChanged();
@@ -37,17 +42,7 @@ public class AimListener extends Observable implements MouseMotionListener, Mous
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        HashMap<String, Object> w = new HashMap<>();
-        w.put("animation", "fire");
-
-        setChanged();
-        notifyObservers(w);
-    }
-
-    @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override

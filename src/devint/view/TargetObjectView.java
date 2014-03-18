@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class TargetObjectView implements GameObjectView {
     private BufferedImage img;
@@ -15,15 +17,20 @@ public class TargetObjectView implements GameObjectView {
 
     private Rectangle targetArea;
 
+    private static java.util.List<BufferedImage> targetImageArray;
+    private static Random random;
+
+    static{
+        targetImageArray = new LinkedList<>();
+        targetImageArray.add(ImageIO.read(new File()));
+        random = new Random();
+    }
+
     public TargetObjectView() {
-        try {
-            img = ImageIO.read(new File("resources\\\\untitled.jpg"));
-            x = 0;
-            y = 0;
-            updateRectangle();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        img = targetImageArray.get(random.nextInt(targetImageArray.size()));
+        x = 0;
+        y = 0;
+        updateRectangle();
     }
 
     private final void updateRectangle() {
