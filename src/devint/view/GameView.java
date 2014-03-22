@@ -56,7 +56,8 @@ public class GameView extends JPanel implements Observer {
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(imgBackground, null, -100, -100);
-        List<GameObjectView> overlayObjects = new LinkedList<GameObjectView>();
+        List<GameObjectView> overlayObjects = new LinkedList<GameObjectView>(),
+            gameObjectsToRemove = new LinkedList<>();
 
         synchronized (gameObjects){
             for(GameObjectView w : gameObjects){
@@ -65,11 +66,19 @@ public class GameView extends JPanel implements Observer {
                 } else {
                     overlayObjects.add(w);
                 }
+                if(w.isFlaggedForRemoval() && !w.isAnimationPending()){
+                    gameObjectsToRemove.add(w);
+                }
             }
 
             for(GameObjectView w : overlayObjects){
                 w.paint(g2d);
             }
+
+            for (GameObjectView gameObjectView : gameObjectsToRemove) {
+                this.gameObjects.remove(gameObjectView);
+            }
+
         }
     }
 
@@ -120,7 +129,8 @@ public class GameView extends JPanel implements Observer {
             while(gameObjectViewIterator.hasNext()){
                 GameObjectView gov = gameObjectViewIterator.next();
                 if(!gov.isOverlay() && gov.getType().equals("target") && gov.isHit(w)){
-                    gameObjects.remove(gov);
+                    gov.doAnimation("hit");
+                    gov.flagForRemoval();
                 }
             }
         }

@@ -100,4 +100,19 @@ public class AimObjectView implements GameObjectView {
     public void doAnimation(String animation) {
         this.doFireAnimation = true;
     }
+
+    @Override
+    public Boolean isFlaggedForRemoval() {
+        return false;
+    }
+
+    @Override
+    public Boolean isAnimationPending() {
+        return this.doFireAnimation;
+    }
+
+    @Override
+    public void flagForRemoval() {
+        return;
+    }
 }

@@ -13,6 +13,8 @@ public interface GameObjectView {
     public void setMovement(Dimension delta);
     public boolean isOverlay();
     public boolean isHit(Point location);
-
     public void doAnimation(String animation);
+    public Boolean isFlaggedForRemoval();
+    public Boolean isAnimationPending();
+    public void flagForRemoval();
 }

@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class TargetObjectView implements GameObjectView {
@@ -17,35 +18,72 @@ public class TargetObjectView implements GameObjectView {
 
     private Rectangle targetArea;
 
-    private static java.util.List<BufferedImage> targetImageArray;
+    private static List<BufferedImage> targetImageArray;
     private static Random random;
+
+    private Boolean doHitAnimation;
+    private Integer hitAnimationFrame;
+    private Integer hitAnimationIndex;
+    private static List<List<BufferedImage>> hitAnimations;
+
+    private Boolean isFlaggedForRemoval;
 
     static{
         targetImageArray = new LinkedList<>();
-        targetImageArray.add(ImageIO.read(new File()));
+        String[] filePaths = {"resources\\\\target1.jpg", "resources\\\\target2.jpg", "resources\\\\target3.jpg"};
+        for (String w : filePaths) {
+            try {
+                targetImageArray.add(ImageIO.read(new File(w)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        hitAnimations = new LinkedList<>();
+        List<BufferedImage> hitAnimation = null;
+        List<String[]> hitPathsArray = new LinkedList<String[]>();
+        for (String w : filePaths) {
+            hitAnimation = new LinkedList<>();
+            try {
+                hitAnimation.add(ImageIO.read(new File(w)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        hitAnimations.add(hitAnimation);
         random = new Random();
     }
 
     public TargetObjectView() {
-        img = targetImageArray.get(random.nextInt(targetImageArray.size()));
-        x = 0;
-        y = 0;
-        updateRectangle();
+        this.img = targetImageArray.get(random.nextInt(targetImageArray.size()));
+        this.x = 0;
+        this.y = 0;
+        this.isFlaggedForRemoval = false;
+        this.doHitAnimation = false;
+        this.hitAnimationFrame = 0;
+        this.updateRectangle();
     }
 
     private final void updateRectangle() {
-        this.targetArea = new Rectangle(x, y, x + img.getWidth(), y + img.getHeight());
+        this.targetArea = new Rectangle(x, y, x + 250, y + 250);
     }
 
     @Override
     public void paint(Graphics2D g) {
-        g.drawImage(img, null, x, y);
-        if (label != null) {
+        if(!this.doHitAnimation){
+            g.drawImage(this.img, null, this.x, this.y);
+        } else {
+            g.drawImage(this.hitAnimations.get(this.hitAnimationIndex).get(hitAnimationFrame), null, this.x, this.y);
+            if(hitAnimationIndex < this.hitAnimations.get(this.hitAnimationIndex).size() - 1){
+                
+            }
+        }
+
+        if (this.label != null) {
             g.setFont(new Font("Segoe UI Light", Font.BOLD, 30));
             g.setColor(new Color(0x88, 0x00, 0x88));
-            Integer deltaX = (img.getWidth() - (30*label.length())) /2;
-            Integer deltaY = (img.getHeight() - (30 * label.length())) /2;
-            g.drawString(label, x + deltaX, y + deltaY);
+            Integer deltaX = (30*this.label.length()) /2;
+            Integer deltaY = (30 * this.label.length()) /2;
+            g.drawString(this.label, x + deltaX, y + deltaY);
         }
     }
 
@@ -100,6 +138,23 @@ public class TargetObjectView implements GameObjectView {
 
     @Override
     public void doAnimation(String animation) {
-        return;
+        if(animation.equals("hit")){
+            doHitAnimation = true;
+        }
+    }
+
+    @Override
+    public Boolean isFlaggedForRemoval() {
+        return isFlaggedForRemoval;
+    }
+
+    @Override
+    public Boolean isAnimationPending() {
+        return doHitAnimation;
+    }
+
+    @Override
+    public void flagForRemoval() {
+        this.isFlaggedForRemoval = true;
     }
 }
