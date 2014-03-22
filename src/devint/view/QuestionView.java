@@ -9,10 +9,12 @@ public class QuestionView implements GameObjectView {
     private Point location;
     // x,y range [-1, 1], relative to size of screen and direction
     private Dimension size;
+    private Boolean isFlaggedForRemoval;
 
     public QuestionView(){
-        location = new Point(0, 600);
-        size = new Dimension(1, 1);
+        this.location = new Point(0, 600);
+        this.size = new Dimension(1, 1);
+        this.isFlaggedForRemoval = false;
     }
 
     @Override
@@ -61,17 +63,28 @@ public class QuestionView implements GameObjectView {
     }
 
     @Override
-    public boolean isOverlay() {
-        return true;
+    public Integer getZOrder() {
+        return 1;
     }
-
     @Override
     public boolean isHit(Point location) {
         return false;
     }
 
     @Override
-    public void doAnimation(String animation) {
-        return;
+    public void doAnimation(String animation) {return;}
+
+    @Override
+    public Boolean isFlaggedForRemoval() {return this.isFlaggedForRemoval;}
+
+    @Override
+    public Boolean isAnimationPending() {return Boolean.FALSE;}
+
+    @Override
+    public void flagForRemoval() {}
+
+    @Override
+    public int compareTo(GameObjectView o) {
+        return this.getZOrder() - o.getZOrder();
     }
 }

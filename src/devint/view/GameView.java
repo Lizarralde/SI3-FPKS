@@ -38,6 +38,7 @@ public class GameView extends JPanel implements Observer {
     public void addNewGameObject(GameObjectView objectView){
         synchronized (gameObjects){
             gameObjects.add(objectView);
+            Collections.sort(gameObjects);
         }
     }
 
@@ -56,29 +57,18 @@ public class GameView extends JPanel implements Observer {
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(imgBackground, null, -100, -100);
-        List<GameObjectView> overlayObjects = new LinkedList<GameObjectView>(),
-            gameObjectsToRemove = new LinkedList<>();
+
+        List<GameObjectView> toRemove = new LinkedList<>();
 
         synchronized (gameObjects){
             for(GameObjectView w : gameObjects){
-                if(!w.isOverlay()){
-                    w.paint(g2d);
-                } else {
-                    overlayObjects.add(w);
-                }
                 if(w.isFlaggedForRemoval() && !w.isAnimationPending()){
-                    gameObjectsToRemove.add(w);
+                    toRemove.add(w);
+                } else {
+                    w.paint(g2d);
                 }
             }
-
-            for(GameObjectView w : overlayObjects){
-                w.paint(g2d);
-            }
-
-            for (GameObjectView gameObjectView : gameObjectsToRemove) {
-                this.gameObjects.remove(gameObjectView);
-            }
-
+            gameObjects.removeAll(toRemove);
         }
     }
 
@@ -128,12 +118,18 @@ public class GameView extends JPanel implements Observer {
             Iterator<GameObjectView> gameObjectViewIterator = gameObjects.iterator();
             while(gameObjectViewIterator.hasNext()){
                 GameObjectView gov = gameObjectViewIterator.next();
-                if(!gov.isOverlay() && gov.getType().equals("target") && gov.isHit(w)){
+                if((gov.getZOrder() == 0) && gov.getType().equals("target") && gov.isHit(w)){
                     gov.doAnimation("hit");
                     gov.flagForRemoval();
+                    return;
                 }
             }
         }
+        // No hit, put a bullet decal on the background
+        GameObjectView gov = new BulletImpactObjectView();
+        gov.setPosition(new Dimension(w.x, w.y));
+        gov.setId(-2);
+        addNewGameObject(gov);
     }
 
     private void setCursorStyle(String cursor) {

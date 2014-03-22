@@ -2,7 +2,7 @@ package devint.view;
 
 import java.awt.*;
 
-public interface GameObjectView {
+public interface GameObjectView extends Comparable<GameObjectView> {
     public void paint(Graphics2D g);
     public void setLabel(String name);
     public String getLabel();
@@ -11,7 +11,7 @@ public interface GameObjectView {
     public String getType();
     public void setPosition(Dimension location);
     public void setMovement(Dimension delta);
-    public boolean isOverlay();
+    public Integer getZOrder();
     public boolean isHit(Point location);
     public void doAnimation(String animation);
     public Boolean isFlaggedForRemoval();

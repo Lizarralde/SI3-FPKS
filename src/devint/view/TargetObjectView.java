@@ -19,18 +19,19 @@ public class TargetObjectView implements GameObjectView {
     private Rectangle targetArea;
 
     private static List<BufferedImage> targetImageArray;
+    private static List<List<BufferedImage>> hitAnimations;
     private static Random random;
 
     private Boolean doHitAnimation;
     private Integer hitAnimationFrame;
     private Integer hitAnimationIndex;
-    private static List<List<BufferedImage>> hitAnimations;
+    private Integer hitAnimationPersistency = 4;
 
     private Boolean isFlaggedForRemoval;
 
     static{
         targetImageArray = new LinkedList<>();
-        String[] filePaths = {"resources\\\\target1.jpg", "resources\\\\target2.jpg", "resources\\\\target3.jpg"};
+        String[] filePaths = {"resources\\\\target1.jpg", "resources\\\\target2.jpg", "resources\\\\target3.jpg", "resources\\\\target4.jpg"};
         for (String w : filePaths) {
             try {
                 targetImageArray.add(ImageIO.read(new File(w)));
@@ -41,20 +42,27 @@ public class TargetObjectView implements GameObjectView {
         hitAnimations = new LinkedList<>();
         List<BufferedImage> hitAnimation = null;
         List<String[]> hitPathsArray = new LinkedList<String[]>();
-        for (String w : filePaths) {
+        hitPathsArray.add(new String[]{"resources\\\\hitanim1_1.png", "resources\\\\hitanim1_2.png", "resources\\\\hitanim1_3.png", "resources\\\\hitanim1_4.png"});
+        hitPathsArray.add(new String[]{"resources\\\\hitanim2_1.png", "resources\\\\hitanim2_2.png", "resources\\\\hitanim2_3.png", "resources\\\\hitanim2_4.png"});
+        hitPathsArray.add(new String[]{"resources\\\\hitanim3_1.png", "resources\\\\hitanim3_2.png", "resources\\\\hitanim3_3.png", "resources\\\\hitanim3_4.png"});
+        hitPathsArray.add(new String[]{"resources\\\\hitanim4_1.png", "resources\\\\hitanim4_2.png", "resources\\\\hitanim4_3.png", "resources\\\\hitanim4_4.png"});
+        for(String[] w : hitPathsArray){
             hitAnimation = new LinkedList<>();
-            try {
-                hitAnimation.add(ImageIO.read(new File(w)));
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (String s : w) {
+                try {
+                    hitAnimation.add(ImageIO.read(new File(s)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            hitAnimations.add(hitAnimation);
         }
-        hitAnimations.add(hitAnimation);
         random = new Random();
     }
 
     public TargetObjectView() {
-        this.img = targetImageArray.get(random.nextInt(targetImageArray.size()));
+        this.hitAnimationIndex = random.nextInt(targetImageArray.size());
+        this.img = targetImageArray.get(hitAnimationIndex);
         this.x = 0;
         this.y = 0;
         this.isFlaggedForRemoval = false;
@@ -64,17 +72,25 @@ public class TargetObjectView implements GameObjectView {
     }
 
     private final void updateRectangle() {
-        this.targetArea = new Rectangle(x, y, x + 250, y + 250);
+        this.targetArea = new Rectangle(x, y, 250, 250);
     }
 
     @Override
     public void paint(Graphics2D g) {
         if(!this.doHitAnimation){
-            g.drawImage(this.img, null, this.x, this.y);
+            g.drawImage(this.img, this.x, this.y, 250, 250, null);
         } else {
-            g.drawImage(this.hitAnimations.get(this.hitAnimationIndex).get(hitAnimationFrame), null, this.x, this.y);
-            if(hitAnimationIndex < this.hitAnimations.get(this.hitAnimationIndex).size() - 1){
-                
+            g.drawImage(this.hitAnimations.get(this.hitAnimationIndex).get(hitAnimationFrame), this.x, this.y, 250, 250, null);
+            if(this.hitAnimationPersistency == 0){
+                if(this.hitAnimationFrame < this.hitAnimations.get(this.hitAnimationIndex).size() - 1){
+                    this.hitAnimationFrame++;
+                    this.hitAnimationPersistency = 4;
+                } else {
+                    this.hitAnimationIndex = 0;
+                    this.doHitAnimation = false;
+                }
+            } else {
+                this.hitAnimationPersistency--;
             }
         }
 
@@ -127,8 +143,8 @@ public class TargetObjectView implements GameObjectView {
     }
 
     @Override
-    public boolean isOverlay() {
-        return false;
+    public Integer getZOrder() {
+        return 0;
     }
 
     @Override
@@ -156,5 +172,10 @@ public class TargetObjectView implements GameObjectView {
     @Override
     public void flagForRemoval() {
         this.isFlaggedForRemoval = true;
+    }
+
+    @Override
+    public int compareTo(GameObjectView o) {
+        return this.getZOrder() - o.getZOrder();
     }
 }

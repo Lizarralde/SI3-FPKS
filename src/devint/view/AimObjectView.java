@@ -18,7 +18,7 @@ public class AimObjectView implements GameObjectView {
 
     public AimObjectView(){
         try {
-            imageCorrection = new Point(-385, -63);
+            imageCorrection = new Point(-377, -37);
             aimImage = ImageIO.read(new File("resources\\\\aim.png"));
             location = new Point();
 
@@ -87,8 +87,8 @@ public class AimObjectView implements GameObjectView {
     }
 
     @Override
-    public boolean isOverlay() {
-        return true;
+    public Integer getZOrder() {
+        return 1;
     }
 
     @Override
@@ -114,5 +114,10 @@ public class AimObjectView implements GameObjectView {
     @Override
     public void flagForRemoval() {
         return;
+    }
+
+    @Override
+    public int compareTo(GameObjectView o) {
+        return this.getZOrder() - o.getZOrder();
     }
 }
