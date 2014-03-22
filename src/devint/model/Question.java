@@ -1,8 +1,9 @@
 package devint.model;
 
 import java.util.List;
+import java.util.Observable;
 
-public class Question {
+public class Question extends Observable {
 
     private Difficulties difficulty;
     private Themes theme;
