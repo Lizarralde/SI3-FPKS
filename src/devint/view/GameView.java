@@ -14,6 +14,7 @@ public class GameView extends JPanel implements Observer {
     private List<GameObjectView> gameObjects;
 
     private Thread frameRefreshThread;
+    private Thread targetDropThread;
 
     public GameView(){
         super();
@@ -196,11 +197,20 @@ public class GameView extends JPanel implements Observer {
     }
 
     public void initializeFrameRefreshThread(){
-        frameRefreshThread = new Thread(new FrameRefreshThread(this, new Long(16)));
-        frameRefreshThread.start();
+        this.frameRefreshThread = new Thread(new FrameRefreshThread(this, new Long(16)));
+        this.frameRefreshThread.start();
     }
 
     public void stopFrameRefreshThread(){
-        frameRefreshThread.interrupt();
+        this.frameRefreshThread.interrupt();
+    }
+
+    public void initializeTargetDropThread(){
+        this.targetDropThread = new Thread(new TargetDropThread(this.gameObjects, 16, this.getSize()));
+        this.targetDropThread.start();
+    }
+
+    public void stopTargetDropThread(){
+        this.targetDropThread.interrupt();
     }
 }

@@ -17,14 +17,14 @@ public class TargetObjectView implements GameObjectView {
     private String label;
 
     private Rectangle targetArea;
-
     private static List<BufferedImage> targetImageArray;
     private static List<List<BufferedImage>> hitAnimations;
-    private static Random random;
 
+    private static Random random;
     private Boolean doHitAnimation;
     private Integer hitAnimationFrame;
     private Integer hitAnimationIndex;
+
     private Integer hitAnimationPersistency = 4;
 
     private Boolean isFlaggedForRemoval;
@@ -40,7 +40,7 @@ public class TargetObjectView implements GameObjectView {
             }
         }
         hitAnimations = new LinkedList<>();
-        List<BufferedImage> hitAnimation = null;
+        List<BufferedImage> hitAnimation;
         List<String[]> hitPathsArray = new LinkedList<String[]>();
         hitPathsArray.add(new String[]{"resources\\\\hitanim1_1.png", "resources\\\\hitanim1_2.png", "resources\\\\hitanim1_3.png", "resources\\\\hitanim1_4.png"});
         hitPathsArray.add(new String[]{"resources\\\\hitanim2_1.png", "resources\\\\hitanim2_2.png", "resources\\\\hitanim2_3.png", "resources\\\\hitanim2_4.png"});

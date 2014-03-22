@@ -29,6 +29,7 @@ public class TestMainGameView extends Observable {
             notifyObservers(state);
             Thread.sleep(300);
         }
+        gv.initializeTargetDropThread();
     }
 
     public static void main(String[] args) throws InterruptedException{
