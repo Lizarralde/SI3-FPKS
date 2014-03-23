@@ -6,13 +6,11 @@ public class QuestionView implements GameObjectView {
     private Integer id;
     private String questionText;
 
-    private Point location;
     // x,y range [-1, 1], relative to size of screen and direction
     private Dimension size;
     private Boolean isFlaggedForRemoval;
 
     public QuestionView(){
-        this.location = new Point(0, 600);
         this.size = new Dimension(1, 1);
         this.isFlaggedForRemoval = false;
     }
@@ -21,10 +19,10 @@ public class QuestionView implements GameObjectView {
     public void paint(Graphics2D g) {
         Rectangle w = g.getClipBounds();
         g.setColor(new Color(0xFF, 0xB8, 0xD8));
-        g.fillRect(location.x, location.y, (int)(size.width * w.getWidth()), (int)(size.height * w.getHeight()));
+        g.fillRect(0, Math.round((float)w.getHeight() - 100), Math.round((float)size.width * (float)w.getWidth()), Math.round((float)size.height * (float)w.getHeight()));
         g.setFont(new Font("Segoe UI Light", Font.BOLD, 60));
         g.setColor(new Color(0xFF, 0x00, 0xFF));
-        g.drawString(questionText, location.x + 30, location.y + 50);
+        g.drawString(questionText, 30, (float)w.getHeight() - 50);
     }
 
     @Override

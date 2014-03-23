@@ -60,12 +60,15 @@ public class TargetObjectView implements GameObjectView {
         random = new Random();
     }
 
+    private List<TargetDropListener> listeners;
+
     public TargetObjectView() {
         this.hitAnimationIndex = random.nextInt(targetImageArray.size());
         this.img = targetImageArray.get(hitAnimationIndex);
         this.x = 0;
         this.y = 0;
         this.isFlaggedForRemoval = false;
+        this.listeners = new LinkedList<>();
         this.doHitAnimation = false;
         this.hitAnimationFrame = 0;
         this.updateRectangle();
@@ -77,6 +80,11 @@ public class TargetObjectView implements GameObjectView {
 
     @Override
     public void paint(Graphics2D g) {
+        if(this.y + 250 > g.getClipBounds().height){
+            for(TargetDropListener l : this.listeners){
+                l.targetDropped(this);
+            }
+        }
         if(!this.doHitAnimation){
             g.drawImage(this.img, this.x, this.y, 250, 250, null);
         } else {
@@ -96,10 +104,10 @@ public class TargetObjectView implements GameObjectView {
 
         if (this.label != null) {
             g.setFont(new Font("Segoe UI Light", Font.BOLD, 30));
-            g.setColor(new Color(0x88, 0x00, 0x88));
-            Integer deltaX = (30*this.label.length()) /2;
-            Integer deltaY = (30 * this.label.length()) /2;
-            g.drawString(this.label, x + deltaX, y + deltaY);
+            Integer deltaX = (250-(15 * this.label.length())) /2;
+            Integer deltaY = 110;
+            g.setColor(new Color(0xFF, 0xFF, 0xFF));
+            g.drawString(this.label, this.x + deltaX, this.y + deltaY);
         }
     }
 
@@ -177,5 +185,9 @@ public class TargetObjectView implements GameObjectView {
     @Override
     public int compareTo(GameObjectView o) {
         return this.getZOrder() - o.getZOrder();
+    }
+
+    public void addTargetDropListener(TargetDropListener listener){
+        this.listeners.add(listener);
     }
 }

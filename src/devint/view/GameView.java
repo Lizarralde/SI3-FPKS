@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class GameView extends JPanel implements Observer {
+public class GameView extends JPanel implements Observer, TargetDropListener {
     private BufferedImage imgBackground;
     private List<GameObjectView> gameObjects;
 
@@ -18,8 +18,8 @@ public class GameView extends JPanel implements Observer {
 
     public GameView(){
         super();
-        setPreferredSize(new Dimension(1000, 700));
-        gameObjects = new LinkedList<GameObjectView>();
+        this.setPreferredSize(new Dimension(1300, 700));
+        gameObjects = new LinkedList<>();
     }
 
     public boolean setBackground(File path){
@@ -57,7 +57,7 @@ public class GameView extends JPanel implements Observer {
     @Override
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(imgBackground, null, -100, -100);
+        g2d.drawImage(imgBackground, 0, 0, this.getWidth(), imgBackground != null ? Math.round(1.0f * this.getWidth() / this.imgBackground.getWidth() * this.imgBackground.getHeight()) : this.getHeight(), null);
 
         List<GameObjectView> toRemove = new LinkedList<>();
 
@@ -97,9 +97,26 @@ public class GameView extends JPanel implements Observer {
             processFireEvent((Point)state.get("fire"), this.getParent().getLocationOnScreen());
         }
 
+        if(state.containsKey("score")){
+            processScoreOperation(state.get("score").toString());
+        }
+
         if(state.containsKey("animation")){
             doAnimation((String) state.get("animation"));
         }
+    }
+
+    private void processScoreOperation(String score) {
+        for(GameObjectView gov : gameObjects){
+            if(gov.getId() == -10){
+                gov.setLabel(score);
+                return;
+            }
+        }
+        // no score object, make a new one
+        GameObjectView gov = new ScoreObjectView();
+        gov.setLabel(score);
+        gameObjects.add(gov);
     }
 
     private void doAnimation(String animation) {
@@ -166,7 +183,7 @@ public class GameView extends JPanel implements Observer {
     private void addNewObject(Map<String, Object> objectDescription) {
         GameObjectView gameObject;
         switch((String)objectDescription.get("type")){
-            case "target": gameObject = new TargetObjectView(); break;
+            case "target": gameObject = new TargetObjectView(); ((TargetObjectView)gameObject).addTargetDropListener(this); break;
             case "question": gameObject = new QuestionView(); break;
             default: gameObject = null; break;
         }
@@ -212,5 +229,12 @@ public class GameView extends JPanel implements Observer {
 
     public void stopTargetDropThread(){
         this.targetDropThread.interrupt();
+    }
+
+    @Override
+    public void targetDropped(TargetObjectView target) {
+        target.doAnimation("hit");
+        target.flagForRemoval();
+        // TODO check with controller and model
     }
 }
