@@ -9,10 +9,11 @@ public class GameModel extends Observable {
 
     private int index;
 
+    private List<Question> questions;
+    private PlayerModel player;
+
     private Difficulties difficulty;
     private Themes theme;
-
-    private List<Question> questions;
 
     public int getIndex() {
 
@@ -22,6 +23,25 @@ public class GameModel extends Observable {
     public void setIndex(int index) {
 
         this.index = index;
+    }
+
+    public List<Question> getQuestions() {
+
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+
+        this.questions = questions;
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+
+        this.player = player;
     }
 
     public Difficulties getDifficulty() {
@@ -44,22 +64,13 @@ public class GameModel extends Observable {
         this.theme = theme;
     }
 
-    public List<Question> getQuestions() {
-
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-
-        this.questions = questions;
-    }
-
-    public GameModel(Themes theme, Difficulties difficulty) {
+    public GameModel(String nickname, Themes theme, Difficulties difficulty) {
 
         this.setIndex(-1);
+        this.setPlayer(new PlayerModel(nickname));
+        this.setQuestions(null);
         this.setDifficulty(difficulty);
         this.setTheme(theme);
-        this.setQuestions(null);
     }
 
     public void next() {
@@ -87,6 +98,17 @@ public class GameModel extends Observable {
             map.put("state", new Boolean(false));
         }
 
+        this.setChanged();
+        this.notifyObservers(map);
+    }
+
+    public void score() {
+
+        this.getPlayer().score(
+                this.getQuestions().get(this.getIndex()).getDifficulty()
+                        .getBonus());
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("score", this.getPlayer().getScore());
         this.setChanged();
         this.notifyObservers(map);
     }

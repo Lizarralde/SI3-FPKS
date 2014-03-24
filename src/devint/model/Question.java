@@ -5,31 +5,11 @@ import java.util.Observable;
 
 public class Question extends Observable {
 
-    private Difficulties difficulty;
-    private Themes theme;
-
     private List<String> answers;
     private String content;
 
-    public Difficulties getDifficulty() {
-
-        return difficulty;
-    }
-
-    private void setDifficulty(Difficulties difficulty) {
-
-        this.difficulty = difficulty;
-    }
-
-    public Themes getTheme() {
-
-        return theme;
-    }
-
-    private void setTheme(Themes theme) {
-
-        this.theme = theme;
-    }
+    private Difficulties difficulty;
+    private Themes theme;
 
     public List<String> getAnswers() {
 
@@ -51,12 +31,32 @@ public class Question extends Observable {
         this.content = content;
     }
 
+    public Difficulties getDifficulty() {
+
+        return difficulty;
+    }
+
+    private void setDifficulty(Difficulties difficulty) {
+
+        this.difficulty = difficulty;
+    }
+
+    public Themes getTheme() {
+
+        return theme;
+    }
+
+    private void setTheme(Themes theme) {
+
+        this.theme = theme;
+    }
+
     public Question(Difficulties difficulty, Themes theme, String content,
             List<String> answers) {
 
-        this.setDifficulty(difficulty);
-        this.setTheme(theme);
         this.setAnswers(answers);
         this.setContent(content);
+        this.setDifficulty(difficulty);
+        this.setTheme(theme);
     }
 }
