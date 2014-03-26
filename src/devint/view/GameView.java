@@ -77,6 +77,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener {
     public void update(Observable o, Object arg) {
         // TODO check observable class
         Map<String, Object> state = (Map<String, Object>) arg;
+        System.out.println(arg);
         if(state.containsKey("newObject")){
             addNewObject((Map<String, Object>) state.get("newObject"));
         }
