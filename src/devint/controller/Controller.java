@@ -14,7 +14,7 @@ public class Controller {
     private GameView gameView;
 
     public Controller() {
-        gameModel = new GameModel("Popol", Themes.MATH, Difficulties.EASY);
+        gameModel = new GameModel("Popol", Themes.MATH, Difficulties.MEDIUM);
         gameView = new GameView();
 
         gameModel.addObserver(gameView);

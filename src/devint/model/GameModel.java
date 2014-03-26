@@ -78,7 +78,7 @@ public class GameModel extends Observable {
             this.getQuestions().add(
                     (Question) Data.load("./resources/questions/"
                             + theme.toString().toLowerCase() + "/"
-                            + difficulty.toString().toLowerCase() + "/question"
+                            + difficulty.toString().toLowerCase() + "/question_"
                             + i + ".xml"));
         }
 
