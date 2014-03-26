@@ -31,7 +31,7 @@ public class TargetObjectView implements GameObjectView {
 
     static{
         targetImageArray = new LinkedList<>();
-        String[] filePaths = {"resources\\\\target1.jpg", "resources\\\\target2.jpg", "resources\\\\target3.jpg", "resources\\\\target4.jpg"};
+        String[] filePaths = {"resources\\\\target1.png", "resources\\\\target2.png", "resources\\\\target3.png", "resources\\\\target4.png"};
         for (String w : filePaths) {
             try {
                 targetImageArray.add(ImageIO.read(new File(w)));

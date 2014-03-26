@@ -2,6 +2,7 @@ package devint.view;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.io.File;
@@ -18,7 +19,7 @@ public class AimObjectView implements GameObjectView {
 
     public AimObjectView(){
         try {
-            imageCorrection = new Point(-377, -37);
+            imageCorrection = new Point(-150, -150);
             aimImage = ImageIO.read(new File("resources\\\\aim.png"));
             location = new Point();
 

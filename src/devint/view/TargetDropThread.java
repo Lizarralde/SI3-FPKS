@@ -11,7 +11,7 @@ public class TargetDropThread implements Runnable {
     private Integer answerTime;
 
     public TargetDropThread(List<GameObjectView> gameObjects, Integer frameTime, Dimension frameSize){
-        this.answerTime = 1000;
+        this.answerTime = 10000;
         this.frameTime = frameTime;
         this.frameSize = frameSize;
         this.gameObjects = gameObjects;
