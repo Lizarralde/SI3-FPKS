@@ -1,0 +1,13 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>2</string>
+    <string>20</string>
+    <string>200</string>
+    <string>2000</string>
+  </answers>
+  <content>1+1=?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>MATH</theme>
+</devint.model.Question>
