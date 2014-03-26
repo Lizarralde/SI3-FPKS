@@ -10,9 +10,13 @@ public class FPKSBootStrapper {
     public FPKSBootStrapper() {
         bootStrapperModel = new BootStrapperModel();
         bootStrapperView = new BootStrapperView();
+
+        //TODO DELETE THIS TOKEN
+       // bootStrapperModel.storeDefaultProfiles();
     }
 
-    public void loadProfiles() {
-        bootStrapperModel.loadProfiles();
+
+    public static void main(String[] arg) {
+        new FPKSBootStrapper();
     }
 }

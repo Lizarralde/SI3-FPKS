@@ -127,7 +127,7 @@ public abstract class ConfigXML {
             ecrivain = new FileWriter(fichier);
         } catch (Exception e) {
             System.err
-                    .println("ConfigXML :  erreur a la creation de l'ecrivain !");
+                    .println("ConfigXML :  erreur a la creation de l'ecrivain !\n" + e);
             return false;
         }
 
