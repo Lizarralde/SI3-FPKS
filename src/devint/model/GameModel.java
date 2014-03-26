@@ -1,6 +1,8 @@
 package devint.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,9 +80,11 @@ public class GameModel extends Observable {
             this.getQuestions().add(
                     (Question) Data.load("./resources/questions/"
                             + theme.toString().toLowerCase() + "/"
-                            + difficulty.toString().toLowerCase() + "/question"
-                            + i + ".xml"));
+                            + difficulty.toString().toLowerCase()
+                            + "/question_" + i + ".xml"));
         }
+
+        Collections.shuffle(this.getQuestions());
 
         this.setDifficulty(difficulty);
         this.setTheme(theme);
@@ -89,6 +93,15 @@ public class GameModel extends Observable {
     public void next() {
 
         this.setIndex(this.getIndex() + 1);
+
+        if (this.getIndex() > 9) {
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("over", new Boolean(true));
+            this.setChanged();
+            this.notifyObservers(map);
+        }
+
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("question", this.getQuestions().get(this.getIndex())
                 .getContent());
