@@ -73,14 +73,14 @@ public class GameModel extends Observable {
         this.setPlayer(new PlayerModel(nickname));
         this.setQuestions(new ArrayList<Question>());
 
-        String path = "./resources/questions/"
-                + theme.toString().toLowerCase() + "/"
-                + difficulty.toString().toLowerCase() + "/question_1.xml";
+        for (int i = 0; i < 10; i++) {
 
-        System.out.println("PATH " + path);
-
-        this.getQuestions().add(
-                (Question) Data.load(path));
+            this.getQuestions().add(
+                    (Question) Data.load("./resources/questions/"
+                            + theme.toString().toLowerCase() + "/"
+                            + difficulty.toString().toLowerCase() + "/question_"
+                            + i + ".xml"));
+        }
 
         this.setDifficulty(difficulty);
         this.setTheme(theme);
