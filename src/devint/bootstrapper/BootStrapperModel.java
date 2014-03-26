@@ -4,10 +4,7 @@ import devint.KeysKeeper;
 import devint.utils.ConfigXML;
 
 import java.security.Key;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by user on 26/03/14.
@@ -16,7 +13,7 @@ public class BootStrapperModel {
 
     private Map<String, Object> profilesDescription = new HashMap<String, Object>();
 
-    private List<Map<String, String>> highscores = new ArrayList<Map<String, String>>();
+    private LinkedHashMap<String, String> highscores = new LinkedHashMap<String, String>();
 
     public BootStrapperModel() {
 
@@ -32,6 +29,7 @@ public class BootStrapperModel {
             return;
         }
 
-
+        List<String> keysOrdered = new ArrayList<String>();
+        
     }
 }

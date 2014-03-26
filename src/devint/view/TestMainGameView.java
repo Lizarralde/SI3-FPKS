@@ -77,7 +77,7 @@ public class TestMainGameView extends Observable {
         w = new HashMap<>();
         object = new HashMap<>();
         object.put("id", -2);
-        object.put("label", "wich fat wud u fuk");
+        object.put("label", "La question de l'amour");
         object.put("type", "question");
         w.put("newObject", object);
         states.add(w);
