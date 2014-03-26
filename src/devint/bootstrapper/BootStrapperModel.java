@@ -1,10 +1,10 @@
 package devint.bootstrapper;
 
 import devint.KeysKeeper;
-import devint.config.Config;
+import devint.model.Difficulties;
+import devint.model.Themes;
 import devint.utils.ConfigXML;
 
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -15,6 +15,12 @@ public class BootStrapperModel {
     private Map<String, Integer> profilesDescription = new HashMap<String, Integer>();
 
     private LinkedHashMap<String, Integer> highscores = new LinkedHashMap<String, Integer>();
+
+    private String nickName;
+
+    private Themes themeSelected;
+
+    private Difficulties difficultySelected;
 
     public BootStrapperModel() {
         loadProfiles();
@@ -42,9 +48,31 @@ public class BootStrapperModel {
             return;
         }
 
-        List<String> cles = new ArrayList<String>(profilesDescription.keySet());
-        Collections.sort(cles, new ScoreComparator(profilesDescription));
+        List<String> keys = new ArrayList<String>(profilesDescription.keySet());
+        Collections.sort(keys, new ScoreComparator(profilesDescription));
 
-        System.out.println("HGSC : " + cles);
+        for(String currentKey : keys ) {
+            getHighscores().put(currentKey, profilesDescription.get(currentKey));
+        }
+    }
+
+    public void setDifficultySelected(Difficulties d) {
+        difficultySelected = d;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void setThemeSelected(Themes themeSelected) {
+        this.themeSelected = themeSelected;
+    }
+
+    public LinkedHashMap<String, Integer> getHighscores() {
+        return highscores;
+    }
+
+    public void setHighscores(LinkedHashMap<String, Integer> highscores) {
+        this.highscores = highscores;
     }
 }

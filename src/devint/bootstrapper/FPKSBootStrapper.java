@@ -11,6 +11,7 @@ public class FPKSBootStrapper {
         bootStrapperModel = new BootStrapperModel();
         bootStrapperView = new BootStrapperView();
 
+        bootStrapperView.showHighScoresView(bootStrapperModel.getHighscores());
         //TODO DELETE THIS TOKEN
        // bootStrapperModel.storeDefaultProfiles();
     }
