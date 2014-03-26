@@ -1,9 +1,12 @@
 package devint.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+
+import devint.data.Data;
 
 public class GameModel extends Observable {
 
@@ -68,7 +71,13 @@ public class GameModel extends Observable {
 
         this.setIndex(-1);
         this.setPlayer(new PlayerModel(nickname));
-        this.setQuestions(null);
+        this.setQuestions(new ArrayList<Question>());
+
+        this.getQuestions().add(
+                (Question) Data.load("./resources/questions/"
+                        + theme.toString().toLowerCase() + "/"
+                        + difficulty.toString().toLowerCase()));
+
         this.setDifficulty(difficulty);
         this.setTheme(theme);
     }

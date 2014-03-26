@@ -42,7 +42,6 @@ public class Config {
                         e.printStackTrace();
                     }
                 }
-
             }
         }
     }
@@ -84,7 +83,6 @@ public class Config {
                     e.printStackTrace();
                 }
             }
-
         }
     }
 }
