@@ -11,7 +11,7 @@ public class TestMainGameView extends Observable {
 
     public TestMainGameView(){
         frame = new JFrame();
-        gv = new GameView();
+        gv = new GameView(null);
 
         frame.getContentPane().add(gv);
         frame.setVisible(true);

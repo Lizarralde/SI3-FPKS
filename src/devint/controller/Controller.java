@@ -19,8 +19,9 @@ public class Controller {
         gameModel = new GameModel("Popol", Themes.MATH, Difficulties.MEDIUM);
 
         JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        gameView = new GameView();
+        gameView = new GameView(this);
         frame.getContentPane().add(gameView);
 
         gameModel.addObserver(gameView);
@@ -28,6 +29,14 @@ public class Controller {
 
         frame.setVisible(true);
         frame.pack();
+
+        gameView.initalizeMouseInput();
+        gameView.initializeFrameRefreshThread();
+        gameView.initializeTargetDropThread();
         //gameView.setVisible(true);
+    }
+
+    public void validate(String answer){
+        this.gameModel.validate(answer);
     }
 }
