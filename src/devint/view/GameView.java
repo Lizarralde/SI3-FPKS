@@ -89,18 +89,20 @@ public class GameView extends JPanel implements Observer, TargetDropListener {
                 w.put("id", id);
                 w.put("label", response);
                 w.put("type", "target");
-                w.put("position", new Dimension(id * 270, 20));
+                w.put("position", new Dimension(id * 270, (int)Math.round(10 + (20 * Math.random()))));
                 this.addNewObject(w);
                 id++;
             }
         }
 
         if(state.containsKey("state")){
-            this.stopTargetDropThread();
             Map<String, Object> w = new HashMap<>();
             w.put("id", -10);
             w.put("label", (Boolean)state.get("state")?"yay":"nay");
             w.put("type", "result");
+            if((Boolean)state.get("state")){
+                this.stopTargetDropThread();
+            }
             this.addNewObject(w);
         }
 

@@ -3,24 +3,35 @@ package devint.view;
 import java.awt.*;
 
 public class ResultView implements GameObjectView {
-    private String label="empty";
+    private String label;
+
+    private Integer framePersistency;
+
+    public ResultView(){
+        this.label = "---";
+        this.framePersistency = 20;
+    }
 
     @Override
     public void paint(Graphics2D g) {
         if(this.label.equals("yay")){
-            g.setColor(new Color(0xCC, 0x00, 0xCC, 0x66));
+            g.setColor(new Color(0xCC, 0x00, 0xCC, this.framePersistency*0x10));
         } else {
             g.setColor(new Color(0x88, 0x88, 0x88, 0x66));
         }
+        this.framePersistency--;
         g.fill(g.getClip());
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Segoe UI", 10, Font.BOLD));
+        g.setFont(new Font("Segoe UI", Font.BOLD, 50));
         g.drawString(this.label, 400, 250);
     }
 
     @Override
     public void setLabel(String name) {
         this.label = name;
+        if(this.label.equals("yay")){
+            this.framePersistency = 100;
+        }
     }
 
     @Override
@@ -51,7 +62,7 @@ public class ResultView implements GameObjectView {
     public void doAnimation(String animation) {}
 
     @Override
-    public Boolean isFlaggedForRemoval() {return Boolean.FALSE;}
+    public Boolean isFlaggedForRemoval() {return this.framePersistency <= 0;}
 
     @Override
     public Boolean isAnimationPending() {return Boolean.FALSE;}
