@@ -39,4 +39,8 @@ public class Controller {
     public void validate(String answer){
         this.gameModel.validate(answer);
     }
+
+    public void next() {
+        this.gameModel.next();
+    }
 }

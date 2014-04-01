@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class GameView extends JPanel implements Observer, TargetDropListener {
+public class GameView extends JPanel implements Observer, TargetDropListener, NextQuestionListener {
     private BufferedImage imgBackground;
     private final List<GameObjectView> gameObjects;
 
@@ -220,7 +220,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener {
         switch((String)objectDescription.get("type")){
             case "target": gameObject = new TargetObjectView(); ((TargetObjectView)gameObject).addTargetDropListener(this); break;
             case "question": gameObject = new QuestionView(); break;
-            case "result": gameObject = new ResultView(); break;
+            case "result": gameObject = new ResultView(this); break;
             default: gameObject = null; break;
         }
         if(gameObject != null){
@@ -275,5 +275,10 @@ public class GameView extends JPanel implements Observer, TargetDropListener {
         target.doAnimation("hit");
         target.flagForRemoval();
         // TODO check with controller and model
+    }
+
+    @Override
+    public void onNextQuestion() {
+        this.hook.next();
     }
 }

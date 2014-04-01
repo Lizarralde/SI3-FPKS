@@ -1,25 +1,37 @@
 package devint.view;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 public class ResultView implements GameObjectView {
     private String label;
 
     private Integer framePersistency;
 
-    public ResultView(){
+    private java.util.List<NextQuestionListener> listeners;
+
+    public ResultView(NextQuestionListener listener){
         this.label = "---";
         this.framePersistency = 20;
+        this.listeners = new LinkedList<>();
+        this.listeners.add(listener);
     }
 
     @Override
     public void paint(Graphics2D g) {
         if(this.label.equals("yay")){
-            g.setColor(new Color(0xCC, 0x00, 0xCC, this.framePersistency*0x10));
+            g.setColor(new Color(0xCC, 0x00, 0xCC, 0x02 * this.framePersistency));
+            if(this.framePersistency == 1){
+                for(NextQuestionListener l : this.listeners){
+                    l.onNextQuestion();
+                }
+            }
         } else {
-            g.setColor(new Color(0x88, 0x88, 0x88, 0x66));
+            g.setColor(new Color(0x88, 0x88, 0x88, 0x0A * this.framePersistency));
         }
-        this.framePersistency--;
+        if(this.framePersistency > 0){
+            this.framePersistency--;
+        }
         g.fill(g.getClip());
         g.setColor(Color.BLACK);
         g.setFont(new Font("Segoe UI", Font.BOLD, 50));
@@ -73,5 +85,9 @@ public class ResultView implements GameObjectView {
     @Override
     public int compareTo(GameObjectView o) {
         return this.getZOrder() - o.getZOrder();
+    }
+
+    public void addNextQuestionListener(NextQuestionListener listener){
+        this.listeners.add(listener);
     }
 }
