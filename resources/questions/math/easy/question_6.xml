@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>23</string>
+    <string>32</string>
+    <string>2</string>
+    <string>28</string>
+    <string>18</string>
+  </answers>
+  <content>11 + 12 = ?</content>
+  <difficulty>EASY</difficulty>
+  <theme>MATH</theme>
+</devint.model.Question>

@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>43</string>
-    <string>122</string>
-    <string>317</string>
-    <string>176</string>
-    <string>297</string>
+    <string>42</string>
+    <string>74</string>
+    <string>44</string>
+    <string>26</string>
+    <string>12</string>
   </answers>
-  <content>4 + 39 = ?</content>
+  <content>26 + 16 = ?</content>
   <difficulty>MEDIUM</difficulty>
   <theme>MATH</theme>
 </devint.model.Question>
