@@ -56,7 +56,7 @@ public class ResultView implements GameObjectView {
     public Integer getId() {return -10;}
 
     @Override
-    public String getType() {return "ResultView";}
+    public String getType() {return "result";}
 
     @Override
     public void setPosition(Dimension location) {}

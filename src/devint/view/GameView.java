@@ -59,14 +59,18 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         List<GameObjectView> toRemove = new LinkedList<>();
 
         synchronized (gameObjects){
-            for(GameObjectView w : gameObjects){
-                if(w.isFlaggedForRemoval() && !w.isAnimationPending()){
-                    toRemove.add(w);
-                } else {
-                    w.paint(g2d);
+            try{
+                for(GameObjectView w : gameObjects){
+                    if(w.isFlaggedForRemoval() && !w.isAnimationPending()){
+                        toRemove.add(w);
+                    } else {
+                        w.paint(g2d);
+                    }
                 }
+                gameObjects.removeAll(toRemove);
+            } catch(ConcurrentModificationException e){
+                // TODO LOL
             }
-            gameObjects.removeAll(toRemove);
         }
     }
 
@@ -93,6 +97,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                 this.addNewObject(w);
                 id++;
             }
+            initializeTargetDropThread();
         }
 
         if(state.containsKey("state")){
@@ -262,8 +267,10 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     }
 
     public void initializeTargetDropThread(){
-        this.targetDropThread = new Thread(new TargetDropThread(this.gameObjects, 16, this.getSize()));
-        this.targetDropThread.start();
+        synchronized (this.gameObjects){
+            this.targetDropThread = new Thread(new TargetDropThread(this.gameObjects, 16, this.getSize()));
+            this.targetDropThread.start();
+        }
     }
 
     public void stopTargetDropThread(){
@@ -279,6 +286,15 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
 
     @Override
     public void onNextQuestion() {
+        synchronized (this.gameObjects){
+            List<GameObjectView> toRemove = new LinkedList<>();
+            for(GameObjectView gov : this.gameObjects){
+                if(gov.getType().equals("target") || gov.getType().equals("question") || gov.getType().equals("result")){
+                    toRemove.add(gov);
+                }
+            }
+            this.gameObjects.removeAll(toRemove);
+        }
         this.hook.next();
     }
 }

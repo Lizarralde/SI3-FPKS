@@ -26,8 +26,6 @@ public class TargetDropThread implements Runnable {
                 frames = this.answerTime / this.frameTime;
                 fallSpeed = 1.0 * frameSize.height / frames;
             }
-            System.out.println(this.answerTime + "t" + this.frameTime + "t" + frameSize.height);
-            System.out.println(frames + "tt" + fallSpeed);
             while(true){
                 Thread.sleep(this.frameTime);
                 for(GameObjectView gov : this.gameObjects){
@@ -36,6 +34,8 @@ public class TargetDropThread implements Runnable {
                     }
                 }
             }
-        } catch(InterruptedException e){}
+        } catch(InterruptedException e){
+            System.out.println("TargetDropThread interuupted and closing");
+        }
     }
 }
