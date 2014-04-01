@@ -4,11 +4,11 @@
   <answers>
     <string>175</string>
     <string>322</string>
-    <string>77</string>
+    <string>177</string>
     <string>229</string>
     <string>121</string>
   </answers>
   <content>167 + 8 = ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>HARD</difficulty>
   <theme>MATH</theme>
 </devint.model.Question>

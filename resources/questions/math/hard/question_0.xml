@@ -9,6 +9,6 @@
     <string>178</string>
   </answers>
   <content>160 + 171 = ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>HARD</difficulty>
   <theme>MATH</theme>
 </devint.model.Question>

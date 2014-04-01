@@ -9,6 +9,6 @@
     <string>311</string>
   </answers>
   <content>124 + 194 = ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>HARD</difficulty>
   <theme>MATH</theme>
 </devint.model.Question>

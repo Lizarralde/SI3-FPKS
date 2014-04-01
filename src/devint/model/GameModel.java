@@ -1,6 +1,8 @@
 package devint.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +83,8 @@ public class GameModel extends Observable {
                             + difficulty.toString().toLowerCase()
                             + "/question_" + i + ".xml"));
         }
+
+        Collections.shuffle(this.getQuestions());
 
         this.setDifficulty(difficulty);
         this.setTheme(theme);
