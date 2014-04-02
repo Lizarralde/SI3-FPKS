@@ -19,30 +19,32 @@ public class ResultView implements GameObjectView {
 
     @Override
     public void paint(Graphics2D g) {
-        if(this.label.equals("yay")){
-            g.setColor(new Color(0xCC, 0x00, 0xCC, 0x02 * this.framePersistency));
+        if(this.label.equals("Mauvaise réponse")){
+            g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
+        } else {
+            g.setColor(new Color(0x00, 0xCC, 0x00, 0x02 * this.framePersistency));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
                 }
             }
-        } else {
-            g.setColor(new Color(0x88, 0x88, 0x88, 0x0A * this.framePersistency));
         }
         if(this.framePersistency > 0){
             this.framePersistency--;
         }
         g.fill(g.getClip());
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Segoe UI", Font.BOLD, 50));
-        g.drawString(this.label, 400, 250);
+            g.setFont(new Font("Segoe UI", Font.BOLD, 50));
+        g.drawString(this.label, g.getClipBounds().width / 2 - 150,  g.getClipBounds().height / 2 - 30);
     }
 
     @Override
     public void setLabel(String name) {
         this.label = name;
-        if(this.label.equals("yay")){
+        if(this.label.equals("Bonne réponse")){
             this.framePersistency = 100;
+        } else if(this.label.equals("Partie terminée")){
+            this.framePersistency = 10000;
         }
     }
 
