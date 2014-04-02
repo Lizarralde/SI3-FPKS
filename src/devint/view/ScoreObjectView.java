@@ -19,8 +19,11 @@ public class ScoreObjectView implements GameObjectView {
         g.setFont(new Font("Segoe UI", Font.PLAIN, 60));
         g.drawString(Integer.toString(this.score), g.getClipBounds().width - 165, 50);
         if(this.scoreDiff > 0){
-            this.score+=1;
-            this.scoreDiff-=1;
+            this.score++;
+            this.scoreDiff--;
+        } else if(this.scoreDiff < 0){
+            this.score--;
+            this.scoreDiff++;
         }
     }
 
@@ -52,7 +55,7 @@ public class ScoreObjectView implements GameObjectView {
     public void setMovement(Dimension delta) {}
 
     @Override
-    public Integer getZOrder() {return 1;}
+    public Integer getZOrder() {return 10;}
 
     @Override
     public boolean isHit(Point location) {return false;}

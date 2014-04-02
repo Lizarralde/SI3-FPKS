@@ -24,9 +24,9 @@ public class ResultView implements GameObjectView {
         } else if(this.label.equals("Temps écoulé")){
             g.setColor(new Color(0x88, 0x00, 000, Math.round(this.framePersistency / 4f)));
         } else if(this.label.equals("Partie terminée")){
-            g.setColor(new Color(0x00, 0xCC, 0x00, Math.round(this.framePersistency / 40f)));
+            g.setColor(new Color(0x00, 0xDD, 0x00, Math.round(this.framePersistency / 40f)));
         } else {
-            g.setColor(new Color(0x00, 0xCC, 0x00, 0x02 * this.framePersistency));
+            g.setColor(new Color(0x00, 0xDD, 0x00, 0x02 * this.framePersistency));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
@@ -37,9 +37,9 @@ public class ResultView implements GameObjectView {
             this.framePersistency--;
         }
         g.fill(g.getClip());
-        g.setColor(Color.BLACK);
-            g.setFont(new Font("Segoe UI", Font.BOLD, 50));
-        g.drawString(this.label, g.getClipBounds().width / 2 - 150,  g.getClipBounds().height / 2 - 30);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Segoe UI", Font.BOLD, 120));
+        g.drawString(this.label.toUpperCase(), g.getClipBounds().width / 2 - (this.label.length() * 39),  g.getClipBounds().height / 2 - 30);
     }
 
     @Override

@@ -33,7 +33,6 @@ public class PlayerModel {
     }
 
     public void score(Integer bonus) {
-
         this.setScore(this.getScore() + bonus);
     }
 }

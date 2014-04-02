@@ -128,12 +128,15 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     }
                     this.addNewObject(w);
                 } else {
+                    Boolean isOk = (Boolean)state.get("state");
                     Map<String, Object> w = new HashMap<>();
                     w.put("id", -10);
-                    w.put("label", (Boolean)state.get("state")?"Bonne réponse":"Mauvaise réponse");
+                    w.put("label", isOk?"Bonne réponse":"Mauvaise réponse");
                     w.put("type", "result");
-                    if((Boolean)state.get("state")){
+                    if(isOk){
                         this.stopTargetDropThread();
+                    } else {
+                        this.hook.malus();
                     }
                     this.addNewObject(w);
                 }
@@ -303,7 +306,9 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     }
 
     public void stopTargetDropThread(){
-        this.targetDropThread.interrupt();
+        try{
+            this.targetDropThread.interrupt();
+        }catch(Exception e){}
     }
 
     @Override

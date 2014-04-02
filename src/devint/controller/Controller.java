@@ -43,4 +43,8 @@ public class Controller {
         this.gameModel.score();
         this.gameModel.next();
     }
+
+    public void malus() {
+        this.gameModel.malus();
+    }
 }
