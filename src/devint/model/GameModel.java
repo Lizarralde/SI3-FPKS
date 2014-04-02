@@ -86,8 +86,6 @@ public class GameModel extends Observable {
                             + "/question_" + i + ".xml"));
         }
 
-        Collections.shuffle(this.getQuestions());
-
         this.setDifficulty(difficulty);
         this.setTheme(theme);
     }
