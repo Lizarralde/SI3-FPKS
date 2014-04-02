@@ -77,72 +77,81 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     @Override
     public void update(Observable o, Object arg) {
         // TODO check observable class
-        Map<String, Object> state = (Map<String, Object>) arg;
-        // controller messages
-        if(state.containsKey("question")){
-            Map<String, Object> w = new HashMap<>();
-            w.put("id", -2);
-            w.put("label", state.get("question"));
-            w.put("type", "question");
-            this.addNewObject(w);
-            Integer id = 0;
-            List<String> answers = (List<String>) state.get("answers");
-            Collections.shuffle(answers);
-            for(String response : answers){
-                w = new HashMap<>();
-                w.put("id", id);
-                w.put("label", response);
-                w.put("type", "target");
-                w.put("position", new Dimension(id * 270, (int)Math.round(10 + (20 * Math.random()))));
-                this.addNewObject(w);
-                id++;
-            }
-            initializeTargetDropThread();
-        }
-
-        if(state.containsKey("state")){
+        if(arg == null){
             Map<String, Object> w = new HashMap<>();
             w.put("id", -10);
-            w.put("label", (Boolean)state.get("state")?"yay":"nay");
+            w.put("label", "Partie terminée");
             w.put("type", "result");
-            if((Boolean)state.get("state")){
-                this.stopTargetDropThread();
-            }
             this.addNewObject(w);
-        }
+        } else {
+            Map<String, Object> state = (Map<String, Object>) arg;
+            // controller messages
+            if(state.containsKey("question")){
+                Map<String, Object> w = new HashMap<>();
+                w.put("id", -2);
+                w.put("label", state.get("question"));
+                w.put("type", "question");
+                this.addNewObject(w);
+                Integer id = 0;
+                List<String> answers = new LinkedList<>((List<String>) state.get("answers"));
+                Collections.shuffle(answers);
+                for(String response : answers){
+                    w = new HashMap<>();
+                    w.put("id", id);
+                    w.put("label", response);
+                    w.put("type", "target");
+                    w.put("position", new Dimension(id * 270, (int)Math.round(10 + (20 * Math.random()))));
+                    this.addNewObject(w);
+                    id++;
+                }
+                initializeTargetDropThread();
+            }
 
-        // old "debug" messages
-        if(state.containsKey("newObject")){
-            addNewObject((Map<String, Object>) state.get("newObject"));
-        }
+            if(state.containsKey("state")){
+                Map<String, Object> w = new HashMap<>();
+                w.put("id", -10);
+                w.put("label", (Boolean)state.get("state")?"Bonne réponse":"Mauvaise réponse");
+                w.put("type", "result");
+                if((Boolean)state.get("state")){
+                    this.stopTargetDropThread();
+                }
+                this.addNewObject(w);
+            }
 
-        if(state.containsKey("background")){
-            setBackground((String) state.get("background"));
-        }
+            // old "debug" messages
+            if(state.containsKey("newObject")){
+                addNewObject((Map<String, Object>) state.get("newObject"));
+            }
 
-        if(state.containsKey("move")){
-            moveObjects(state);
-        }
+            if(state.containsKey("background")){
+                setBackground((String) state.get("background"));
+            }
 
-        if(state.containsKey("cursorStyle")){
-            setCursorStyle((String) state.get("cursorStyle"));
-        }
+            if(state.containsKey("move")){
+                moveObjects(state);
+            }
 
-        if(state.containsKey("fire")){
-            processFireEvent((Point)state.get("fire"), this.getParent().getLocationOnScreen());
-        }
+            if(state.containsKey("cursorStyle")){
+                setCursorStyle((String) state.get("cursorStyle"));
+            }
 
-        if(state.containsKey("score")){
-            processScoreOperation(state.get("score").toString());
-        }
+            if(state.containsKey("fire")){
+                processFireEvent((Point)state.get("fire"), this.getParent().getLocationOnScreen());
+            }
 
-        if(state.containsKey("animation")){
-            doAnimation((String) state.get("animation"));
+            if(state.containsKey("score")){
+                processScoreOperation(state.get("score").toString());
+            }
+
+            if(state.containsKey("animation")){
+                doAnimation((String) state.get("animation"));
+            }
         }
     }
 
     private void processScoreOperation(String score) {
         synchronized (gameObjects){
+            System.out.println(score);
             for(GameObjectView gov : gameObjects){
                 if(gov.getId() == -10){
                     gov.setLabel(score);

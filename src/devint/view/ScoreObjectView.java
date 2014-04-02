@@ -19,8 +19,8 @@ public class ScoreObjectView implements GameObjectView {
         g.setFont(new Font("Segoe UI", Font.PLAIN, 60));
         g.drawString(Integer.toString(this.score), g.getClipBounds().width - 165, 50);
         if(this.scoreDiff > 0){
-            this.score+=50;
-            this.scoreDiff-=50;
+            this.score+=1;
+            this.scoreDiff-=1;
         }
     }
 
