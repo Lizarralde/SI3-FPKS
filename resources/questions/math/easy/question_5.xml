@@ -8,7 +8,7 @@
     <string>11</string>
     <string>15</string>
   </answers>
-  <content>12 + 15 = ?</content>
+  <content>10 + 17 = ?</content>
   <difficulty>EASY</difficulty>
   <theme>MATH</theme>
 </devint.model.Question>
