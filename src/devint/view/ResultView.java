@@ -23,8 +23,10 @@ public class ResultView implements GameObjectView {
             g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
         } else if(this.label.equals("Temps écoulé")){
             g.setColor(new Color(0x88, 0x00, 000, Math.round(this.framePersistency / 4f)));
-        } else {
+        } else if(this.label.equals("Partie terminée")){
             g.setColor(new Color(0x00, 0xCC, 0x00, Math.round(this.framePersistency / 40f)));
+        } else {
+            g.setColor(new Color(0x00, 0xCC, 0x00, 0x02 * this.framePersistency));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
