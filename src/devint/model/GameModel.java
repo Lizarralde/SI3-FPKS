@@ -108,6 +108,15 @@ public class GameModel extends Observable {
                 .getContent());
         map.put("answers", this.getQuestions().get(this.getIndex())
                 .getAnswers());
+        map.put("path",
+                KeysKeeper.PATH_RESSOURCES
+                        + KeysKeeper.PATH_QUESTION
+                        + this.getQuestions().get(this.getIndex()).getTheme()
+                                .toString().toLowerCase()
+                        + "/"
+                        + this.getQuestions().get(this.getIndex())
+                                .getDifficulty().toString().toLowerCase()
+                        + "/question_" + this.getIndex() + ".wav");
         this.setChanged();
         this.notifyObservers(map);
     }
