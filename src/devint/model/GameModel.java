@@ -136,6 +136,18 @@ public class GameModel extends Observable {
         this.notifyObservers(map);
     }
 
+    public void malus() {
+
+        this.getPlayer().score(
+                this.getQuestions().get(this.getIndex()).getDifficulty()
+                        .getMalus());
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("score", this.getQuestions().get(getIndex()).getDifficulty()
+                .getMalus());
+        this.setChanged();
+        this.notifyObservers(map);
+    }
+
     public void score() {
 
         this.getPlayer().score(
