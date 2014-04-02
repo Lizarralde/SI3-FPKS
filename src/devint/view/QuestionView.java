@@ -18,11 +18,11 @@ public class QuestionView implements GameObjectView {
     @Override
     public void paint(Graphics2D g) {
         Rectangle w = g.getClipBounds();
-        g.setColor(new Color(0xFF, 0xB8, 0xD8));
+        g.setColor(new Color(0xFF, 0xFF, 0xFF));
         g.fillRect(0, Math.round((float)w.getHeight() - 100), Math.round((float)size.width * (float)w.getWidth()), Math.round((float)size.height * (float)w.getHeight()));
-        g.setFont(new Font("Segoe UI Light", Font.BOLD, 60));
-        g.setColor(new Color(0xFF, 0x00, 0xFF));
-        g.drawString(questionText, 30, (float)w.getHeight() - 50);
+        g.setFont(new Font("Segoe UI Light", Font.BOLD, 75));
+        g.setColor(new Color(0x00, 0x00, 0x00));
+        g.drawString(questionText, 50, (float)w.getHeight() - 40);
     }
 
     @Override

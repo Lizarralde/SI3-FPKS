@@ -20,6 +20,11 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     private Thread frameRefreshThread;
     private Thread targetDropThread;
 
+    private Random r;
+
+    // TODO do something because that's dirty as fuck
+    private Boolean isDropHit;
+
     public GameView(Controller hook){
         super();
         this.hook = hook;
@@ -28,6 +33,8 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         this.setBackground("resources\\\\bg.jpg");
         this.setCursorStyle("none");
         this.processScoreOperation("0");
+        this.isDropHit = false;
+        this.r = new Random(232465612);
     }
 
     public final boolean setBackground(File path){
@@ -95,7 +102,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                 this.addNewObject(w);
                 Integer id = 0;
                 List<String> answers = new LinkedList<>((List<String>) state.get("answers"));
-                Collections.shuffle(answers);
+                Collections.shuffle(answers, r);
                 for(String response : answers){
                     w = new HashMap<>();
                     w.put("id", id);
@@ -111,14 +118,25 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             }
 
             if(state.containsKey("state")){
-                Map<String, Object> w = new HashMap<>();
-                w.put("id", -10);
-                w.put("label", (Boolean)state.get("state")?"Bonne réponse":"Mauvaise réponse");
-                w.put("type", "result");
-                if((Boolean)state.get("state")){
-                    this.stopTargetDropThread();
+                if(this.isDropHit && (Boolean)state.get("state")){
+                    Map<String, Object> w = new HashMap<>();
+                    w.put("id", -10);
+                    w.put("label", "Temps écoulé");
+                    w.put("type", "result");
+                    if((Boolean)state.get("state")){
+                        this.stopTargetDropThread();
+                    }
+                    this.addNewObject(w);
+                } else {
+                    Map<String, Object> w = new HashMap<>();
+                    w.put("id", -10);
+                    w.put("label", (Boolean)state.get("state")?"Bonne réponse":"Mauvaise réponse");
+                    w.put("type", "result");
+                    if((Boolean)state.get("state")){
+                        this.stopTargetDropThread();
+                    }
+                    this.addNewObject(w);
                 }
-                this.addNewObject(w);
             }
 
             // old "debug" messages
@@ -292,8 +310,8 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     public void targetDropped(TargetObjectView target) {
         target.doAnimation("hit");
         target.flagForRemoval();
+        this.isDropHit = Boolean.TRUE;
         this.hook.validate(target.getLabel());
-        // TODO check with controller and model
     }
 
     @Override

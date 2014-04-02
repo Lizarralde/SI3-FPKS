@@ -21,8 +21,10 @@ public class ResultView implements GameObjectView {
     public void paint(Graphics2D g) {
         if(this.label.equals("Mauvaise réponse")){
             g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
+        } else if(this.label.equals("Temps écoulé")){
+            g.setColor(new Color(0x88, 0x00, 000, Math.round(this.framePersistency / 4f)));
         } else {
-            g.setColor(new Color(0x00, 0xCC, 0x00, 0x02 * this.framePersistency));
+            g.setColor(new Color(0x00, 0xCC, 0x00, Math.round(this.framePersistency / 40f)));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
@@ -45,6 +47,8 @@ public class ResultView implements GameObjectView {
             this.framePersistency = 100;
         } else if(this.label.equals("Partie terminée")){
             this.framePersistency = 10000;
+        } else if(this.label.equals("Temps écoulé")){
+            this.framePersistency = 1000;
         }
     }
 

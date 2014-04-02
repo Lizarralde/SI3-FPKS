@@ -13,9 +13,9 @@ public class ScoreObjectView implements GameObjectView {
 
     @Override
     public void paint(Graphics2D g) {
-        g.setColor(new Color(0xAA, 0x00, 0xAA));
+        g.setColor(new Color(255, 255, 255));
         g.fillRect(g.getClipBounds().width - 170, 0, 170, 60);
-        g.setColor(new Color(0xFF, 0x55, 0x50));
+        g.setColor(new Color(0, 0, 0));
         g.setFont(new Font("Segoe UI", Font.PLAIN, 60));
         g.drawString(Integer.toString(this.score), g.getClipBounds().width - 165, 50);
         if(this.scoreDiff > 0){
