@@ -135,7 +135,8 @@ public class GameModel extends Observable {
                 this.getQuestions().get(this.getIndex()).getDifficulty()
                         .getBonus());
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("score", this.getPlayer().getScore());
+        map.put("score", this.getQuestions().get(getIndex()).getDifficulty()
+                .getBonus());
         this.setChanged();
         this.notifyObservers(map);
     }
