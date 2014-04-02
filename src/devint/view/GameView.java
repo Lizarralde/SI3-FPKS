@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class GameView extends JPanel implements Observer, TargetDropListener, NextQuestionListener {
+public class GameView extends JPanel implements Observer, TargetDropListener, NextQuestionListener, AudioDoneListener {
     private BufferedImage imgBackground;
     private final List<GameObjectView> gameObjects;
 
@@ -87,6 +87,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             Map<String, Object> state = (Map<String, Object>) arg;
             // controller messages
             if(state.containsKey("question")){
+                System.out.println(state);
                 Map<String, Object> w = new HashMap<>();
                 w.put("id", -2);
                 w.put("label", state.get("question"));
@@ -104,7 +105,9 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     this.addNewObject(w);
                     id++;
                 }
-                initializeTargetDropThread();
+                AudioPlayerThread apt = new AudioPlayerThread((String)state.get("path"));
+                apt.addListener(this);
+                new Thread(apt).start();
             }
 
             if(state.containsKey("state")){
@@ -151,7 +154,6 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
 
     private void processScoreOperation(String score) {
         synchronized (gameObjects){
-            System.out.println(score);
             for(GameObjectView gov : gameObjects){
                 if(gov.getId() == -10){
                     gov.setLabel(score);
@@ -290,6 +292,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     public void targetDropped(TargetObjectView target) {
         target.doAnimation("hit");
         target.flagForRemoval();
+        this.hook.validate(target.getLabel());
         // TODO check with controller and model
     }
 
@@ -305,5 +308,10 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             this.gameObjects.removeAll(toRemove);
         }
         this.hook.next();
+    }
+
+    @Override
+    public void onAudioDone() {
+        this.initializeTargetDropThread();
     }
 }

@@ -32,7 +32,6 @@ public class Controller {
 
         gameView.initalizeMouseInput();
         gameView.initializeFrameRefreshThread();
-        gameView.initializeTargetDropThread();
         //gameView.setVisible(true);
     }
 
