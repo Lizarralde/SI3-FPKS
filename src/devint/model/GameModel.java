@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
+import devint.KeysKeeper;
 import devint.data.Data;
 
 public class GameModel extends Observable {
@@ -78,7 +79,8 @@ public class GameModel extends Observable {
         for (int i = 0; i < 10; i++) {
 
             this.getQuestions().add(
-                    (Question) Data.load("./resources/questions/"
+                    (Question) Data.load(KeysKeeper.PATH_RESSOURCES
+                            + KeysKeeper.PATH_QUESTION
                             + theme.toString().toLowerCase() + "/"
                             + difficulty.toString().toLowerCase()
                             + "/question_" + i + ".xml"));
@@ -94,6 +96,14 @@ public class GameModel extends Observable {
 
         this.setIndex(this.getIndex() + 1);
         Map<String, Object> map = new HashMap<String, Object>();
+
+        if (this.getIndex() > 9) {
+
+            this.setChanged();
+            this.notifyObservers();
+            return;
+        }
+
         map.put("question", this.getQuestions().get(this.getIndex())
                 .getContent());
         map.put("answers", this.getQuestions().get(this.getIndex())

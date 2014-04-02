@@ -20,6 +20,7 @@ public class KeysKeeper {
     public static final String VERSION_SONS_GENERAUX_DESCRIPTION = "0.0.0";
 
     public static final String PATH_RESSOURCES = "./resources/";
+    public static final String PATH_QUESTION = "questions/";
     public static final String PATH_SONS = "sons/";
     public static final String PATH_PROFILES_FILE = "data/profiles";
     public static final String PATH_PROFILES_VERSION = "0.0.0";
