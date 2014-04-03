@@ -212,6 +212,12 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     gov.doAnimation("hit");
                     gov.flagForRemoval();
                     return;
+                } else if(gov.getType().equals("result")){
+                    if((gov.getLabel().equals("Partie terminée"))){
+                        this.hook.endGame();
+                    } else if((gov.getLabel().equals("Bonne réponse"))){
+                        this.onNextQuestion();
+                    }
                 }
             }
         }
@@ -257,7 +263,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         switch((String)objectDescription.get("type")){
             case "target": gameObject = new TargetObjectView(); ((TargetObjectView)gameObject).addTargetDropListener(this); break;
             case "question": gameObject = new QuestionView(); break;
-            case "result": gameObject = new ResultView(this); break;
+            case "result": gameObject = new ResultView(); break;
             default: gameObject = null; break;
         }
         if(gameObject != null){

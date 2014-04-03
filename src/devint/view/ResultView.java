@@ -10,6 +10,12 @@ public class ResultView implements GameObjectView {
 
     private java.util.List<NextQuestionListener> listeners;
 
+    public ResultView(){
+        this.label = "---";
+        this.framePersistency = 20;
+        this.listeners = new LinkedList<>();
+    }
+
     public ResultView(NextQuestionListener listener){
         this.label = "---";
         this.framePersistency = 20;
@@ -23,10 +29,8 @@ public class ResultView implements GameObjectView {
             g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
         } else if(this.label.equals("Temps écoulé")){
             g.setColor(new Color(0x88, 0x00, 000, Math.round(this.framePersistency / 4f)));
-        } else if(this.label.equals("Partie terminée")){
-            g.setColor(new Color(0x00, 0xDD, 0x00, Math.round(this.framePersistency / 40f)));
         } else {
-            g.setColor(new Color(0x00, 0xDD, 0x00, 0x02 * this.framePersistency));
+            g.setColor(new Color(0x00, 0xDD, 0x00, Math.round(this.framePersistency / 40f)));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
@@ -46,7 +50,7 @@ public class ResultView implements GameObjectView {
     public void setLabel(String name) {
         this.label = name;
         if(this.label.equals("Bonne réponse")){
-            this.framePersistency = 100;
+            this.framePersistency = 10000;
         } else if(this.label.equals("Partie terminée")){
             this.framePersistency = 10000;
         } else if(this.label.equals("Temps écoulé")){
