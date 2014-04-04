@@ -1,7 +1,8 @@
 package devint.model;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ public class GameModel extends Observable {
     private int index;
 
     private List<Question> questions;
+    private Map<Question, String> sounds;
     private PlayerModel player;
 
     private Difficulties difficulty;
@@ -39,6 +41,16 @@ public class GameModel extends Observable {
     public void setQuestions(List<Question> questions) {
 
         this.questions = questions;
+    }
+
+    public Map<Question, String> getSounds() {
+
+        return sounds;
+    }
+
+    public void setSounds(Map<Question, String> sounds) {
+
+        this.sounds = sounds;
     }
 
     public PlayerModel getPlayer() {
@@ -75,16 +87,25 @@ public class GameModel extends Observable {
         this.setIndex(-1);
         this.setPlayer(new PlayerModel(nickname));
         this.setQuestions(new ArrayList<Question>());
+        this.setSounds(new HashMap<Question, String>());
 
-        for (int i = 0; i < 10; i++) {
+        File[] files = new File(KeysKeeper.PATH_RESSOURCES
+                + KeysKeeper.PATH_QUESTION + theme.toString().toLowerCase()
+                + "/" + difficulty.toString().toLowerCase()).listFiles();
 
-            this.getQuestions().add(
-                    (Question) Data.load(KeysKeeper.PATH_RESSOURCES
-                            + KeysKeeper.PATH_QUESTION
+        for (int i = 0; i < files.length; i++) {
+
+            Question q = (Question) Data.load(files[i].getAbsolutePath());
+            this.getQuestions().add(q);
+            this.getSounds().put(
+                    q,
+                    KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS
                             + theme.toString().toLowerCase() + "/"
                             + difficulty.toString().toLowerCase()
-                            + "/question_" + i + ".xml"));
+                            + "/question_" + i + ".wav");
         }
+
+        Collections.shuffle(this.getQuestions());
 
         this.setDifficulty(difficulty);
         this.setTheme(theme);
@@ -107,14 +128,7 @@ public class GameModel extends Observable {
         map.put("answers", this.getQuestions().get(this.getIndex())
                 .getAnswers());
         map.put("path",
-                KeysKeeper.PATH_RESSOURCES
-                        + KeysKeeper.PATH_QUESTION
-                        + this.getQuestions().get(this.getIndex()).getTheme()
-                                .toString().toLowerCase()
-                        + "/"
-                        + this.getQuestions().get(this.getIndex())
-                                .getDifficulty().toString().toLowerCase()
-                        + "/question_" + this.getIndex() + ".wav");
+                this.getSounds().get(this.getQuestions().get(this.getIndex())));
         this.setChanged();
         this.notifyObservers(map);
     }
@@ -138,24 +152,21 @@ public class GameModel extends Observable {
 
     public void malus() {
 
-        this.getPlayer().score(
-                this.getQuestions().get(this.getIndex()).getDifficulty()
-                        .getMalus());
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("score", this.getQuestions().get(getIndex()).getDifficulty()
+        this.score(this.getQuestions().get(this.getIndex()).getDifficulty()
                 .getMalus());
-        this.setChanged();
-        this.notifyObservers(map);
     }
 
-    public void score() {
+    public void bonus() {
 
-        this.getPlayer().score(
-                this.getQuestions().get(this.getIndex()).getDifficulty()
-                        .getBonus());
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("score", this.getQuestions().get(getIndex()).getDifficulty()
+        this.score(this.getQuestions().get(this.getIndex()).getDifficulty()
                 .getBonus());
+    }
+
+    public void score(int score) {
+
+        this.getPlayer().score(score);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("score", score);
         this.setChanged();
         this.notifyObservers(map);
     }

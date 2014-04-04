@@ -40,7 +40,7 @@ public class Controller {
     }
 
     public void next() {
-        this.gameModel.score();
+        this.gameModel.bonus();
         this.gameModel.next();
     }
 
