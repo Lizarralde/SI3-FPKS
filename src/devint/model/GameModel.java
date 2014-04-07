@@ -116,7 +116,7 @@ public class GameModel extends Observable {
         this.setIndex(this.getIndex() + 1);
         Map<String, Object> map = new HashMap<String, Object>();
 
-        if (this.getIndex() > 9) {
+        if (this.getIndex() > 9 || this.getIndex() >= this.getQuestions().size()) {
 
             this.setChanged();
             this.notifyObservers();

@@ -2,5 +2,5 @@ package devint.model;
 
 public enum Themes {
 
-    GEOGRAPHY, MATH, SPACE;
+    FRANÇAIS, GEOGRAPHY, MATH, SPACE;
 }

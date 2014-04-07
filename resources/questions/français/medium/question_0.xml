@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>est</string>
+    <string>es</string>
+    <string>et</string>
+    <string>ai</string>
+    <string>aie</string>
+  </answers>
+  <content>Complète : Elle ... très gentille.</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>
