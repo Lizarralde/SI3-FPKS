@@ -222,7 +222,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                 } else if(gov.getType().equals("result")){
                     if((gov.getLabel().equals("Partie terminée"))){
                         this.hook.endGame();
-                    } else if((gov.getLabel().equals("Bonne réponse"))){
+                    } else {
                         this.onNextQuestion();
                     }
                 }
@@ -322,6 +322,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         try{
             this.targetDropThread.interrupt();
         }catch(Exception e){}
+        this.targetDropThread = null;
     }
 
     @Override

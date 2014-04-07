@@ -29,7 +29,7 @@ public class ResultView implements GameObjectView {
     @Override
     public void paint(Graphics2D g) {
         if(this.label.equals("Mauvaise réponse")){
-            g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
+            g.setColor(new Color(0x88, 0x00, 000, 0xFF));
         } else if(this.isFailGameOver){
             g.setColor(new Color(0x88, 0x00, 000, 0xFF));
         } else {
