@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
+import devint.KeysKeeper;
+
 public class Config {
 
     private static Properties properties;
@@ -21,7 +23,8 @@ public class Config {
             InputStream in = null;
 
             try {
-                in = new FileInputStream("./resources/config.properties");
+                in = new FileInputStream(KeysKeeper.PATH_RESSOURCES
+                        + KeysKeeper.PATH_CONFIG + "config.properties");
 
                 properties.load(in);
             } catch (FileNotFoundException e) {
@@ -62,7 +65,8 @@ public class Config {
 
         try {
 
-            out = new FileOutputStream("./resources/config.properties");
+            out = new FileOutputStream(KeysKeeper.PATH_RESSOURCES
+                    + KeysKeeper.PATH_CONFIG + "config.properties");
 
             properties.store(out, null);
         } catch (FileNotFoundException e) {

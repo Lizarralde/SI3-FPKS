@@ -31,7 +31,9 @@ public enum Difficulties {
 
     Difficulties() {
 
-        this.setBonus(Integer.parseInt(Config.getProperty(this.toString() + "_BONUS")));
-        this.setMalus(-Integer.parseInt(Config.getProperty(this.toString() + "_MALUS")));
+        this.setBonus(Integer.parseInt(Config.getProperty(this.toString()
+                + "_BONUS")));
+        this.setMalus(Integer.parseInt(Config.getProperty(this.toString()
+                + "_MALUS")));
     }
 }

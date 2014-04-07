@@ -122,7 +122,7 @@ public class Controller implements ActionListener{
     }
 
     public void next() {
-        this.gameModel.score();
+        this.gameModel.bonus();
         this.gameModel.next();
     }
 
