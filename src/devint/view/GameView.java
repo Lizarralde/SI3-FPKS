@@ -94,7 +94,15 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             Map<String, Object> state = (Map<String, Object>) arg;
             // controller messages
             if(state.containsKey("question")){
-                System.out.println(state);
+                synchronized (this.gameObjects){
+                    List<GameObjectView> toRemove = new LinkedList<>();
+                    for(GameObjectView gov : this.gameObjects){
+                        if(gov.getType().equals("target") || gov.getType().equals("question") || gov.getType().equals("result")){
+                            toRemove.add(gov);
+                        }
+                    }
+                    this.gameObjects.removeAll(toRemove);
+                }
                 Map<String, Object> w = new HashMap<>();
                 w.put("id", -2);
                 w.put("label", state.get("question"));
@@ -133,9 +141,8 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     w.put("id", -10);
                     w.put("label", isOk?"Bonne réponse":"Mauvaise réponse");
                     w.put("type", "result");
-                    if(isOk){
-                        this.stopTargetDropThread();
-                    } else {
+                    this.stopTargetDropThread();
+                    if (!isOk) {
                         this.hook.malus();
                     }
                     this.addNewObject(w);
@@ -207,7 +214,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             Iterator<GameObjectView> gameObjectViewIterator = gameObjects.iterator();
             while(gameObjectViewIterator.hasNext()){
                 GameObjectView gov = gameObjectViewIterator.next();
-                if((gov.getZOrder() == 0) && gov.getType().equals("target") && gov.isHit(w)){
+                if(this.targetDropThread != null && (gov.getZOrder() == 0) && gov.getType().equals("target") && gov.isHit(w)){
                     this.hook.validate(gov.getLabel());
                     gov.doAnimation("hit");
                     gov.flagForRemoval();
