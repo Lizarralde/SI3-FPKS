@@ -40,9 +40,6 @@ public class ResultView implements GameObjectView {
                 }
             }
         }
-        if(this.framePersistency > 0){
-            this.framePersistency--;
-        }
         g.fill(g.getClip());
         g.setColor(Color.WHITE);
         g.setFont(new Font("Segoe UI", Font.BOLD, 120));
