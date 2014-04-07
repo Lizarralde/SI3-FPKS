@@ -131,9 +131,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     w.put("id", -11);
                     w.put("label", "Partie terminée");
                     w.put("type", "result");
-                    if((Boolean)state.get("state")){
-                        this.stopTargetDropThread();
-                    }
+                    this.stopTargetDropThread();
                     this.addNewObject(w);
                 } else {
                     Boolean isOk = (Boolean)state.get("state");
@@ -223,6 +221,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     if((gov.getLabel().equals("Partie terminée"))){
                         this.hook.endGame();
                     } else if(gov.getLabel().equals("Mauvaise réponse")) {
+                        gameObjects.remove(gov);
                         this.initializeTargetDropThread();
                     } else {
                         this.onNextQuestion();
