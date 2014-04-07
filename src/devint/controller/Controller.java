@@ -102,7 +102,7 @@ public class Controller implements ActionListener{
         JLabel jl = new JLabel(this.username);
         jl.setFont(f);
         this.frame.add(jl, "cell 1 1, grow");
-        jl = new JLabel("TODO SCORE points");
+        jl = new JLabel(Integer.toString(this.gameModel.getPlayer().getScore()));
         jl.setFont(f);
         this.frame.add(jl, "cell 1 3");
         jl = new JLabel("THEME");

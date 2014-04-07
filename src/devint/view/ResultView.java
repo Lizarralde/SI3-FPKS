@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public class ResultView implements GameObjectView {
     private String label;
+    private Boolean isFailGameOver;
 
     private Integer framePersistency;
 
@@ -14,6 +15,7 @@ public class ResultView implements GameObjectView {
         this.label = "---";
         this.framePersistency = 20;
         this.listeners = new LinkedList<>();
+        this.isFailGameOver = false;
     }
 
     public ResultView(NextQuestionListener listener){
@@ -21,16 +23,17 @@ public class ResultView implements GameObjectView {
         this.framePersistency = 20;
         this.listeners = new LinkedList<>();
         this.listeners.add(listener);
+        this.isFailGameOver = false;
     }
 
     @Override
     public void paint(Graphics2D g) {
         if(this.label.equals("Mauvaise réponse")){
             g.setColor(new Color(0x88, 0x00, 000, 0x0A * this.framePersistency));
-        } else if(this.label.equals("Temps écoulé")){
-            g.setColor(new Color(0x88, 0x00, 000, Math.round(this.framePersistency / 4f)));
+        } else if(this.isFailGameOver){
+            g.setColor(new Color(0x88, 0x00, 000, 0xFF));
         } else {
-            g.setColor(new Color(0x00, 0xDD, 0x00, Math.round(this.framePersistency / 40f)));
+            g.setColor(new Color(0x00, 0xDD, 0x00, 0xFF));
             if(this.framePersistency == 1){
                 for(NextQuestionListener l : this.listeners){
                     l.onNextQuestion();
@@ -53,8 +56,6 @@ public class ResultView implements GameObjectView {
             this.framePersistency = 10000;
         } else if(this.label.equals("Partie terminée")){
             this.framePersistency = 10000;
-        } else if(this.label.equals("Temps écoulé")){
-            this.framePersistency = 1000;
         }
     }
 
@@ -62,7 +63,7 @@ public class ResultView implements GameObjectView {
     public String getLabel() {return this.label;}
 
     @Override
-    public void setId(Integer id) {}
+    public void setId(Integer id) {this.isFailGameOver = id == -11;}
 
     @Override
     public Integer getId() {return -10;}

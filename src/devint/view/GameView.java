@@ -120,8 +120,8 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             if(state.containsKey("state")){
                 if(this.isDropHit && (Boolean)state.get("state")){
                     Map<String, Object> w = new HashMap<>();
-                    w.put("id", -10);
-                    w.put("label", "Temps écoulé");
+                    w.put("id", -11);
+                    w.put("label", "Partie terminée");
                     w.put("type", "result");
                     if((Boolean)state.get("state")){
                         this.stopTargetDropThread();
