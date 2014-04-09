@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Vert</string>
+    <string>Bleu</string>
+    <string>Orange</string>
+    <string>Beige</string>
+    <string>Rouge</string>
+  </answers>
+  <content>Quelle couleur est "green" ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>ENGLISH</theme>
+</devint.model.Question>

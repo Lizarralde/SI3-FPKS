@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Australie</string>
+    <string>Europe</string>
+    <string>Asie</string>
+    <string>Amérique</string>
+    <string>Afrique</string>
+  </answers>
+  <content>Trouve l'intrus</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>GEOGRAPHY</theme>
+</devint.model.Question>

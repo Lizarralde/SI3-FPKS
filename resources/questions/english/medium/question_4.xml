@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Sun</string>
+    <string>Moon</string>
+    <string>Light</string>
+    <string>Day</string>
+    <string>Star</string>
+  </answers>
+  <content>Comment dit-on "soleil" ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>ENGLISH</theme>
+</devint.model.Question>

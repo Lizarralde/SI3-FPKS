@@ -24,6 +24,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
 
     // TODO do something because that's dirty as fuck
     private Boolean isDropHit;
+    private AimListener listener;
 
     public GameView(Controller hook){
         super();
@@ -90,6 +91,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             w.put("label", "Partie terminée");
             w.put("type", "result");
             this.addNewObject(w);
+            new Thread(new AudioPlayerThread("resources\\\\sons\\\\game_win.wav")).start();
         } else {
             Map<String, Object> state = (Map<String, Object>) arg;
             // controller messages
@@ -126,13 +128,16 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
             }
 
             if(state.containsKey("state")){
-                if(this.isDropHit && (Boolean)state.get("state")){
-                    Map<String, Object> w = new HashMap<>();
-                    w.put("id", -11);
-                    w.put("label", "Partie terminée");
-                    w.put("type", "result");
-                    this.stopTargetDropThread();
-                    this.addNewObject(w);
+                if(this.isDropHit){
+                    if((Boolean)state.get("state")){
+                        Map<String, Object> w = new HashMap<>();
+                        w.put("id", -11);
+                        w.put("label", "Partie terminée");
+                        w.put("type", "result");
+                        this.stopTargetDropThread();
+                        this.addNewObject(w);
+                        new Thread(new AudioPlayerThread("resources\\\\sons\\\\game_lose.wav")).start();
+                    }
                 } else {
                     Boolean isOk = (Boolean)state.get("state");
                     Map<String, Object> w = new HashMap<>();
@@ -144,6 +149,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                         this.hook.malus();
                     }
                     this.addNewObject(w);
+                    new Thread(new AudioPlayerThread("resources\\\\sons\\\\" + (isOk?"success.wav":"failure.wav"))).start();
                 }
             }
 
@@ -219,7 +225,10 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     return;
                 } else if(gov.getType().equals("result")){
                     if((gov.getLabel().equals("Partie terminée"))){
+                        this.removeMouseListener(this.listener);
+                        this.removeMouseMotionListener(this.listener);
                         this.hook.endGame();
+                        return;
                     } else if(gov.getLabel().equals("Mauvaise réponse")) {
                         gameObjects.remove(gov);
                         this.initializeTargetDropThread();
@@ -294,7 +303,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
     }
 
     public void initalizeMouseInput(){
-        AimListener listener = new AimListener();
+        listener = new AimListener();
         this.addMouseMotionListener(listener);
         this.addMouseListener(listener);
         listener.addObserver(this);

@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>15</string>
+    <string>12</string>
+    <string>50</string>
+    <string>31</string>
+    <string>5</string>
+  </answers>
+  <content>Traduire: fifteen</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>ENGLISH</theme>
+</devint.model.Question>

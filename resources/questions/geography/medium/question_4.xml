@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Canberra</string>
+    <string>Sydney</string>
+    <string>Auckland</string>
+    <string>Wellington</string>
+    <string>Baltimore</string>
+  </answers>
+  <content>Quelle est la capitale de l'Australie ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>GEOGRAPHY</theme>
+</devint.model.Question>

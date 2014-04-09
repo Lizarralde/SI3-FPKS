@@ -90,8 +90,8 @@ public class GameModel extends Observable {
         this.setSounds(new HashMap<Question, String>());
 
         File[] files = new File(KeysKeeper.PATH_RESSOURCES
-                + KeysKeeper.PATH_QUESTION + theme.toString().toLowerCase()
-                + "/" + difficulty.toString().toLowerCase()).listFiles();
+                + KeysKeeper.PATH_QUESTION + theme.getPath().toLowerCase()
+                + "/" + difficulty.getPath().toLowerCase()).listFiles();
 
         for (int i = 0; i < files.length; i++) {
 
@@ -100,8 +100,8 @@ public class GameModel extends Observable {
             this.getSounds().put(
                     q,
                     KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS
-                            + theme.toString().toLowerCase() + "/"
-                            + difficulty.toString().toLowerCase()
+                            + theme.getPath().toLowerCase() + "/"
+                            + difficulty.getPath().toLowerCase()
                             + "/question_" + i + ".wav");
         }
 

@@ -103,9 +103,10 @@ public class TargetObjectView implements GameObjectView {
         }
 
         if (this.label != null) {
-            g.setFont(new Font("Segoe UI Light", Font.BOLD, 70));
-            Integer deltaX = (250-(35 * this.label.length())) /2;
-            Integer deltaY = 150;
+            Integer f = Math.min(Math.round(250 / this.label.length() * 1.3f), 60);
+            g.setFont(new Font("Segoe UI Light", Font.BOLD, f));
+            Integer deltaX = Math.round((250-( (f==60?30:f/1.9f) * this.label.length())) /2f);
+            Integer deltaY = 140;
             g.setColor(new Color(0xFF, 0xFF, 0xFF));
             g.drawString(this.label, this.x + deltaX, this.y + deltaY);
         }

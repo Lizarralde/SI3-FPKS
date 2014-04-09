@@ -29,23 +29,34 @@ public class Controller implements ActionListener{
     private Boolean isReplay;
 
     public Controller() {
+        this.username = "";
+        createInitialWindow();
+    }
+
+    private final void createInitialWindow() {
         this.isReplay = false;
 
         this.frame = new JFrame();
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                                                                   // pad,lbl,usrna,pad,lbld,diff,pad,lblt,them,pad,btng,pad
+        // pad,lbl,usrna,pad,lbld,diff,pad,lblt,them,pad,btng,pad
         this.frame.setLayout(new MigLayout("fill", "[20][grow][20]", "[10][100][100][10][100][100][10][100][100][10][50][10]"));
         Font f = new Font("Segoe UI", Font.PLAIN, 40);
         JLabel jl = new JLabel("NOM D'UTILISATEUR");
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
         jl.setFont(f);
         this.frame.add(jl, "cell 1 1, grow");
         jl = new JLabel("DIFFICULTE");
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
         jl.setFont(f);
         this.frame.add(jl, "cell 1 4");
         jl = new JLabel("THEME");
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
         jl.setFont(f);
         this.frame.add(jl, "cell 1 7");
         this.tf = new JTextField(17);
+        this.tf.setText(this.username);
+        this.tf.addActionListener(this);
+        this.tf.setHorizontalAlignment(SwingConstants.CENTER);
         this.tf.setFont(f);
         this.frame.add(tf, "cell 1 2");
         JComboBox<Themes> comboBox = new JComboBox<>();
@@ -59,6 +70,7 @@ public class Controller implements ActionListener{
         this.difficultySelector.setSelectedItem(Difficulties.MEDIUM);
         comboBoxDiff.setModel(this.difficultySelector);
         comboBoxDiff.setFont(f);
+        comboBoxDiff.setEnabled(false);
         this.frame.add(comboBoxDiff, "cell 1 5, grow");
 
         JButton jouer = new JButton("JOUER");
@@ -67,6 +79,7 @@ public class Controller implements ActionListener{
         this.frame.add(jouer, "cell 1 10, grow");
 
         this.frame.setSize(450, 700);
+        this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
     }
 
@@ -91,29 +104,39 @@ public class Controller implements ActionListener{
     }
 
     public void endGame(){
+        System.out.println("EndGame called");
         this.isReplay = Boolean.TRUE;
 
         this.frame.dispose();
         this.frame = new JFrame();
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        this.frame.setLayout(new MigLayout("fill", "[20][grow][20]", "[10][100][10][100][grow][50][10]"));
+        this.frame.setLayout(new MigLayout("fill", "[20][grow][20]", "[10][100][10][100][grow][50][50][10]"));
         Font f = new Font("Segoe UI", Font.PLAIN, 40);
         JLabel jl = new JLabel(this.username);
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
         jl.setFont(f);
         this.frame.add(jl, "cell 1 1, grow");
         jl = new JLabel(Integer.toString(this.gameModel.getPlayer().getScore()));
         jl.setFont(f);
         this.frame.add(jl, "cell 1 3");
         jl = new JLabel("THEME");
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
         jl.setFont(f);
 
-        JButton jouer = new JButton("REJOUER");
+        JButton jouer = new JButton("REJOUER (MEME THEME)");
         jouer.setFont(f);
         jouer.addActionListener(this);
         this.frame.add(jouer, "cell 1 5, grow");
 
-        this.frame.setSize(450, 300);
+
+        jouer = new JButton("REJOUER (NOUVEAU THEME)");
+        jouer.setFont(f);
+        jouer.addActionListener(this);
+        this.frame.add(jouer, "cell 1 6, grow");
+
+        this.frame.setSize(900, 400);
+        this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
     }
 
@@ -133,7 +156,12 @@ public class Controller implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(this.isReplay){
-            this.launchGame();
+            if(e.getActionCommand().equals("REJOUER (NOUVEAU THEME)")){
+                this.frame.dispose();
+                this.createInitialWindow();
+            } else {
+                this.launchGame();
+            }
         } else {
             this.username = this.tf.getText();
             this.difficulty = (Difficulties) this.difficultySelector.getSelectedItem();

@@ -20,9 +20,10 @@ public class QuestionView implements GameObjectView {
         Rectangle w = g.getClipBounds();
         g.setColor(new Color(0xFF, 0xFF, 0xFF));
         g.fillRect(0, Math.round((float)w.getHeight() - 100), Math.round((float)size.width * (float)w.getWidth()), Math.round((float)size.height * (float)w.getHeight()));
-        g.setFont(new Font("Segoe UI Light", Font.BOLD, 75));
+        Integer f = Math.min(Math.round(w.width / questionText.length()) * 2, 75);
+        g.setFont(new Font("Segoe UI Light", Font.BOLD, f));
         g.setColor(new Color(0x00, 0x00, 0x00));
-        g.drawString(questionText, 50, (float)w.getHeight() - 40);
+        g.drawString(questionText, 70, (float)w.getHeight() - 40);
     }
 
     @Override
