@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>jeux</string>
+    <string>je</string>
+    <string>jeu</string>
+    <string>jeus</string>
+    <string>jes</string>
+  </answers>
+  <content>Complète : Vive les ... vidéos</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>
