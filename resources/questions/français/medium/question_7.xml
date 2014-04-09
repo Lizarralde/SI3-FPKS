@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>visiter</string>
+    <string>visité</string>
+    <string>visitter</string>
+    <string>visitté</string>
+    <string>visitait</string>
+  </answers>
+  <content>Complète : ... tous les pays du monde</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>

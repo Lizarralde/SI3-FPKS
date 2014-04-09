@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>suce / zizi</string>
-    <string>avale / spermatozoides</string>
-    <string>bouffe / bite</string>
-    <string>leche / chattes</string>
-    <string>nique / maman</string>
+    <string>dansons</string>
+    <string>densons</string>
+    <string>danssons</string>
+    <string>danson/string>
+    <string>dansson</string>
   </answers>
-  <content>Complète : je ... des ...</content>
+  <content>Complète : nous ... sur de la musique !</content>
   <difficulty>MEDIUM</difficulty>
   <theme>FRANÇAIS</theme>
 </devint.model.Question>

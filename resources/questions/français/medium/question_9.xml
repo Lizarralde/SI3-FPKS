@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>n'ai</string>
+    <string>n'est</string>
+    <string>n'es</string>
+    <string>nez</string>
+    <string>nais</string>
+  </answers>
+  <content>Complète : je ..... pas trente ans</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>
