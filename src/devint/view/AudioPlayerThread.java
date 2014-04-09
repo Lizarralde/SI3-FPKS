@@ -25,6 +25,7 @@ public class AudioPlayerThread implements Runnable {
     @Override
     public void run() {
         try {
+            if(!f.exists()){Thread.sleep(1000);}
             AudioInputStream audio = AudioSystem.getAudioInputStream(f);
             AudioFormat format;
             format = audio.getFormat();

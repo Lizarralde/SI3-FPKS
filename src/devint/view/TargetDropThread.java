@@ -26,7 +26,7 @@ public class TargetDropThread implements Runnable {
                 frames = this.answerTime / this.frameTime;
                 fallSpeed = 1.0 * frameSize.height / frames;
             }
-            System.out.println("TargetDropThread starting to drop");
+            System.out.println("TargetDropThread starting to drop\nframeTime="+this.frameTime + " for frameheight="+this.frameSize.height);
             while(true){
                 Thread.sleep(this.frameTime);
                 for(GameObjectView gov : this.gameObjects){

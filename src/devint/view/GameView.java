@@ -350,6 +350,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
 
     @Override
     public void onAudioDone() {
+        System.out.println("onAudioDone called, frameHeight=" + this.getSize().height);
         this.initializeTargetDropThread();
     }
 }
