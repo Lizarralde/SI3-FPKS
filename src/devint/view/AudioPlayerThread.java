@@ -41,9 +41,11 @@ public class AudioPlayerThread implements Runnable {
                     auline.write(abData, 0, nBytesRead);
                 }
             }
+        } catch (Exception e) {e.printStackTrace();}
+        finally {
             for(AudioDoneListener l : this.listeners){
                 l.onAudioDone();
             }
-        } catch (Exception e) {e.printStackTrace();}
+        }
     }
 }
