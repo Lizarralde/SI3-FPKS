@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>suce / zizi</string>
+    <string>avale / spermatozoides</string>
+    <string>bouffe / bite</string>
+    <string>leche / chattes</string>
+    <string>nique / maman</string>
+  </answers>
+  <content>Complète : je ... des ...</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>

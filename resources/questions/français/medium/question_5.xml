@@ -1,0 +1,14 @@
+<devint.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>parle</string>
+    <string>parles</string>
+    <string>parlent</string>
+    <string>parlons</string>
+    <string>parrle</string>
+  </answers>
+  <content>Complète : je ... deux langues</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANÇAIS</theme>
+</devint.model.Question>
