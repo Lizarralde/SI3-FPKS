@@ -1,6 +1,7 @@
 package devint.controller;
 
 import com.sun.corba.se.spi.orbutil.fsm.ActionBase;
+import devint.bootstrapper.BootStrapperView;
 import devint.model.Difficulties;
 import devint.model.GameModel;
 import devint.model.Themes;
@@ -11,8 +12,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Random;
 
-public class Controller implements ActionListener{
+public class Controller implements ActionListener {
 
     private GameModel gameModel;
     private GameView gameView;
@@ -28,65 +32,17 @@ public class Controller implements ActionListener{
 
     private Boolean isReplay;
 
+    private BootStrapperView btv;
+
     public Controller() {
         this.username = "";
-        createInitialWindow();
+        btv = new BootStrapperView(this);
     }
 
-    private final void createInitialWindow() {
-        this.isReplay = false;
-
-        this.frame = new JFrame();
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        // pad,lbl,usrna,pad,lbld,diff,pad,lblt,them,pad,btng,pad
-        this.frame.setLayout(new MigLayout("fill", "[20][grow][20]", "[10][100][100][10][100][100][10][100][100][10][50][10]"));
-        Font f = new Font("Segoe UI", Font.PLAIN, 40);
-        JLabel jl = new JLabel("NOM D'UTILISATEUR");
-        jl.setHorizontalAlignment(SwingConstants.CENTER);
-        jl.setFont(f);
-        this.frame.add(jl, "cell 1 1, grow");
-        jl = new JLabel("DIFFICULTE");
-        jl.setHorizontalAlignment(SwingConstants.CENTER);
-        jl.setFont(f);
-        this.frame.add(jl, "cell 1 4");
-        jl = new JLabel("THEME");
-        jl.setHorizontalAlignment(SwingConstants.CENTER);
-        jl.setFont(f);
-        this.frame.add(jl, "cell 1 7");
-        this.tf = new JTextField(17);
-        this.tf.setText(this.username);
-        this.tf.addActionListener(this);
-        this.tf.setHorizontalAlignment(SwingConstants.CENTER);
-        this.tf.setFont(f);
-        this.frame.add(tf, "cell 1 2");
-        JComboBox<Themes> comboBox = new JComboBox<>();
-        this.themeSelector = new DefaultComboBoxModel<>(Themes.values());
-        this.themeSelector.setSelectedItem(Themes.MATH);
-        comboBox.setModel(this.themeSelector);
-        comboBox.setFont(f);
-        this.frame.add(comboBox, "cell 1 8, grow");
-        JComboBox<Difficulties> comboBoxDiff = new JComboBox<>();
-        this.difficultySelector = new DefaultComboBoxModel<>(Difficulties.values());
-        this.difficultySelector.setSelectedItem(Difficulties.MEDIUM);
-        comboBoxDiff.setModel(this.difficultySelector);
-        comboBoxDiff.setFont(f);
-        comboBoxDiff.setEnabled(false);
-        this.frame.add(comboBoxDiff, "cell 1 5, grow");
-
-        JButton jouer = new JButton("JOUER");
-        jouer.setFont(f);
-        jouer.addActionListener(this);
-        this.frame.add(jouer, "cell 1 10, grow");
-
-        this.frame.setSize(450, 700);
-        this.frame.setLocationRelativeTo(null);
-        this.frame.setVisible(true);
-    }
-
-    public void launchGame(){
+    public void launchGame() {
+        System.out.println("LOIUY");
         this.gameModel = new GameModel(this.username, this.theme, this.difficulty);
 
-        this.frame.dispose();
         this.frame = new JFrame();
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,48 +55,23 @@ public class Controller implements ActionListener{
         this.frame.setVisible(true);
         this.frame.pack();
 
+        this.frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        this.frame.setFocusable(true);
+        this.frame.pack();
+
+        this.frame.setLocationRelativeTo(null);
+        this.frame.setVisible(true);
+
         this.gameView.initalizeMouseInput();
         this.gameView.initializeFrameRefreshThread();
     }
 
-    public void endGame(){
-        System.out.println("EndGame called");
-        this.isReplay = Boolean.TRUE;
-
-        this.frame.dispose();
-        this.frame = new JFrame();
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        this.frame.setLayout(new MigLayout("fill", "[20][grow][20]", "[10][100][10][100][grow][50][50][10]"));
-        Font f = new Font("Segoe UI", Font.PLAIN, 40);
-        JLabel jl = new JLabel(this.username);
-        jl.setHorizontalAlignment(SwingConstants.CENTER);
-        jl.setFont(f);
-        this.frame.add(jl, "cell 1 1, grow");
-        jl = new JLabel(Integer.toString(this.gameModel.getPlayer().getScore()));
-        jl.setFont(f);
-        this.frame.add(jl, "cell 1 3");
-        jl = new JLabel("THEME");
-        jl.setHorizontalAlignment(SwingConstants.CENTER);
-        jl.setFont(f);
-
-        JButton jouer = new JButton("REJOUER (MEME THEME)");
-        jouer.setFont(f);
-        jouer.addActionListener(this);
-        this.frame.add(jouer, "cell 1 5, grow");
-
-
-        jouer = new JButton("REJOUER (NOUVEAU THEME)");
-        jouer.setFont(f);
-        jouer.addActionListener(this);
-        this.frame.add(jouer, "cell 1 6, grow");
-
-        this.frame.setSize(900, 400);
-        this.frame.setLocationRelativeTo(null);
-        this.frame.setVisible(true);
+    public void endGame() {
+        System.out.println("\n++++++ Game Ended +++++++\n");
+        //TODO replay
     }
 
-    public void validate(String answer){
+    public void validate(String answer) {
         this.gameModel.validate(answer);
     }
 
@@ -155,21 +86,15 @@ public class Controller implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(this.isReplay){
-            if(e.getActionCommand().equals("REJOUER (NOUVEAU THEME)")){
-                this.frame.dispose();
-                this.createInitialWindow();
-            } else {
-                this.launchGame();
-            }
-        } else {
-            this.username = this.tf.getText();
-            this.difficulty = (Difficulties) this.difficultySelector.getSelectedItem();
-            this.theme = (Themes) this.themeSelector.getSelectedItem();
 
-            if(this.username != null && this.difficulty != null && this.theme != null){
-                this.launchGame();
-            }
+        this.username = this.btv.getUsername();
+        this.difficulty = this.btv.getSelectedDifficulty();
+        this.theme = this.btv.getSelectedTheme();
+
+        System.out.println("Username : " + username + "\nDifficulty : " + difficulty + "\nTheme : " + theme);
+
+        if (this.username != null && !this.username.isEmpty() && this.difficulty != null && this.theme != null) {
+            this.launchGame();
         }
     }
 }

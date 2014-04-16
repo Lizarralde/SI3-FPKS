@@ -9,9 +9,9 @@ public class FPKSBootStrapper {
 
     public FPKSBootStrapper() {
         bootStrapperModel = new BootStrapperModel();
-        bootStrapperView = new BootStrapperView();
+        //bootStrapperView = new BootStrapperView();
 
-        bootStrapperView.showHighScoresView(bootStrapperModel.getHighscores());
+        //bootStrapperView.showHighScoresView(bootStrapperModel.getHighscores());
         //TODO DELETE THIS TOKEN
        // bootStrapperModel.storeDefaultProfiles();
     }
