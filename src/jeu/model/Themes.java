@@ -2,13 +2,13 @@ package jeu.model;
 
 public enum Themes {
 
-    FRANÇAIS("FRANÇAIS"), GEOGRAPHIE("GEOGRAPHIE"), MATHS("MATHS"), ANGLAIS("ANGLAIS");
+    FRANCAIS("FRANCAIS"), GEOGRAPHIE("GEOGRAPHIE"), MATHS("MATHS"), ANGLAIS("ANGLAIS");
 
     @Override
     public String toString() {
         switch(this){
-            case FRANÇAIS: return "Français";
-            case GEOGRAPHIE: return "Géographie";
+            case FRANCAIS: return "Français";
+            case GEOGRAPHIE: return "Geographie";
             case MATHS: return "Maths";
             case ANGLAIS: return "Anglais";
             default: return "WHAT THE FUCK ARE YOU DOING?";
@@ -17,7 +17,7 @@ public enum Themes {
 
     public String getPath(){
         switch(this){
-            case FRANÇAIS: return "FRANÇAIS";
+            case FRANCAIS: return "FRANCAIS";
             case GEOGRAPHIE: return "GEOGRAPHIE";
             case MATHS: return "MATHS";
             case ANGLAIS: return "ANGLAIS";

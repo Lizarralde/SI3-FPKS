@@ -93,6 +93,7 @@ public class FPKSBootstrapperInitView extends MenuAbstrait {
 
             nomOptions[optionCourante] = themes.get(0);
             boutonOption[optionCourante].setText(themes.get(0));
+            this.voix.playShortText(boutonOption[optionCourante].getText());
         }
 
         if(optionCourante == 2) {
@@ -107,6 +108,7 @@ public class FPKSBootstrapperInitView extends MenuAbstrait {
 
             nomOptions[optionCourante] = difficulties.get(0);
             boutonOption[optionCourante].setText(difficulties.get(0));
+            this.voix.playShortText(boutonOption[optionCourante].getText());
         }
     }
 }

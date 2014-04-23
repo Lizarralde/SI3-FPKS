@@ -12,13 +12,7 @@
 
 package devintAPI;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -45,6 +39,8 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 
 	// le nombre d'options
 	private int nbOption;
+
+    private JScrollPane scrollPane;
 
 	// attributs des textes et des boutons
 	// � red�finir dans la classe concr�te si vous le souhaitez
@@ -186,11 +182,10 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 		regles.gridy = 2;
 		placement.setConstraints(boutons, regles);
 
-        JScrollPane scrollPane = new JScrollPane(boutons);
+        scrollPane = new JScrollPane(boutons, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER  );
         placement.setConstraints(scrollPane, regles);
 
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        //TODO : VK_DOWN DOESNT SCROLL DOWN
         add(scrollPane);
 	}
 
@@ -234,6 +229,7 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 				optionCourante = (optionCourante + 1) % nbOption;
 				setFocusedButton(optionCourante);
 			}
+            scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
 		}
 		// se d�placer dans les options vers le haut
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -247,8 +243,9 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 					optionCourante = nbOption - 1;
 				setFocusedButton(optionCourante);
 			}
-		}
-	}
+            scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
+        }
+    }
 
 	// activer l'option si clic sur le bouton
 	public void actionPerformed(ActionEvent ae) {
