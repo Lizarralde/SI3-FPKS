@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>capitale</string>
+    <string>cappitale</string>
+    <string>capittale</string>
+    <string>capital</string>
+    <string>capittal</string>
+  </answers>
+  <content>Complète : Paris est la ... de la France</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

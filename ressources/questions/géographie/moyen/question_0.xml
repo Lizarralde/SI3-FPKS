@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Harare</string>
+    <string>Paris</string>
+    <string>Hong Kong</string>
+    <string>Pékin</string>
+    <string>Moncuq</string>
+  </answers>
+  <content>Quelle est la capitale du Zimbabwe ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>GEOGRAPHY</theme>
+</jeu.model.Question>

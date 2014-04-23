@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Hello</string>
+    <string>Hay</string>
+    <string>How</string>
+    <string>Night</string>
+    <string>Hell</string>
+  </answers>
+  <content>Comment dit-on "bonjour" ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>ANGLAIS</theme>
+</jeu.model.Question>

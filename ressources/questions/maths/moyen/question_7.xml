@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>46</string>
+    <string>58</string>
+    <string>28</string>
+    <string>29</string>
+    <string>78</string>
+  </answers>
+  <content>12 + 34 = ?</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>MATHS</theme>
+</jeu.model.Question>

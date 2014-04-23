@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>planète</string>
+    <string>plat net</string>
+    <string>planette</string>
+    <string>plannette</string>
+    <string>planet</string>
+  </answers>
+  <content>Complète : La Terre est une ...</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>
