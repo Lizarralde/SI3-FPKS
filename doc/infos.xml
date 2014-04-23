@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infos>
+  <year><![CDATA[2014]]></year>
+  <gamecategories>
+    <gamecategory><![CDATA[Connaissances]]></gamecategory>
+    <gamecategory><![CDATA[Calcul]]></gamecategory>
+  </gamecategories>
+  <shortdescription><![CDATA[jeu de questions réponses par tirs à la première personne]]></shortdescription>
+  <public><![CDATA[MV]]></public>
+  <gamestate><![CDATA[Valider pour le CD]]></gamestate>
+  <age><![CDATA[3+]]></age>
+  <title><![CDATA[First Person Knowledge Shooter]]></title>
+  <authors>
+    <author><![CDATA[Benjamin Benni]]></author>
+    <author><![CDATA[Franck Dechavanne]]></author>
+    <author><![CDATA[Dorian Lizarralde]]></author>
+  </authors>
+  <notes>
+    <note><![CDATA[Ce jeu nécessite une souris et la connaissance des touches directionnelles]]></note>
+  </notes>
+  <gameplay><![CDATA[Tir à la souris]]></gameplay>
+  <gamerules><![CDATA[Une question va être posée en bas de l'écran. Des bulles en haut de l'écran représentent des réponses possibles. Tu dois tirer sur la bonne réponse avant que celle-ci n'atteigne le bas de l'écran. Si la bonne réponse arrive en bas de l'écran, tu as perdu ! Si tu cliques sur une mauvaise réponse, tu perds des points !]]></gamerules>
+</infos>
+
