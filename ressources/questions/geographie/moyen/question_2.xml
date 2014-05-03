@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Washington</string>
+    <string>New York</string>
+    <string>Boston</string>
+    <string>Los Angeles</string>
+    <string>Dallas</string>
+  </answers>
+  <content>Complète: la capitale des Etats-Unis est ...</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>GEOGRAPHY</theme>
+</jeu.model.Question>

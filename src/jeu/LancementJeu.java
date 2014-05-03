@@ -2,6 +2,8 @@ package jeu;
 
 import jeu.bootstrapper.BootstrapperController;
 
+import java.util.Locale;
+
 public class LancementJeu {
 
     private BootstrapperController bootstrapperController;
@@ -12,6 +14,7 @@ public class LancementJeu {
     }
 
     public static void main(String[] args) {
+        Locale.setDefault(Locale.FRANCE);
         new LancementJeu();
     }
 }

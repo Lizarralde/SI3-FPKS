@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>français</string>
+    <string>fransai</string>
+    <string>franssé</string>
+    <string>françai</string>
+    <string>francé</string>
+  </answers>
+  <content>Complète : Ceux qui habitent la France, sont ...</content>
+  <difficulty>MEDIUM</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

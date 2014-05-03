@@ -7,7 +7,7 @@ public enum Themes {
     @Override
     public String toString() {
         switch(this){
-            case FRANCAIS: return "Français";
+            case FRANCAIS: return "Francais";
             case GEOGRAPHIE: return "Geographie";
             case MATHS: return "Maths";
             case ANGLAIS: return "Anglais";

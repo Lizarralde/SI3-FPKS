@@ -1,34 +1,44 @@
 <map>
   <entry>
-    <string>t</string>
-    <int>2</int>
-  </entry>
-  <entry>
-    <string>Rachid</string>
-    <int>2</int>
-  </entry>
-  <entry>
-    <string>r</string>
-    <int>2</int>
-  </entry>
-  <entry>
-    <string>a</string>
-    <int>2</int>
-  </entry>
-  <entry>
-    <string>Mohamed</string>
-    <int>2</int>
-  </entry>
-  <entry>
     <string>Francky</string>
-    <int>1</int>
-  </entry>
-  <entry>
-    <string>y</string>
-    <int>2</int>
+    <map>
+      <entry>
+        <jeu.model.Themes>GEOGRAPHIE</jeu.model.Themes>
+        <int>13</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>MATHS</jeu.model.Themes>
+        <int>6</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
+        <int>18</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
+        <int>10</int>
+      </entry>
+    </map>
   </entry>
   <entry>
     <string>Benjamin</string>
-    <int>3</int>
+    <map>
+      <entry>
+        <jeu.model.Themes>GEOGRAPHIE</jeu.model.Themes>
+        <int>10</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>MATHS</jeu.model.Themes>
+        <int>13</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
+        <int>8</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
+        <int>11</int>
+      </entry>
+    </map>
   </entry>
 </map>
