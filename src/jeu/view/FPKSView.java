@@ -21,8 +21,8 @@ public class FPKSView extends JFrame {
 
 
 
-    public FPKSView(FPKSController controller, Observable o) {
-        super();
+    public FPKSView(FPKSController controller, Observable o, String nickName) {
+        super("FPKS - " + nickName);
 
         this.controller = controller;
 
@@ -30,7 +30,6 @@ public class FPKSView extends JFrame {
 
         this.gameView = new GameView(this.controller);
         getContentPane().add(gameView);
-
 
         o.addObserver(this.gameView);
         ((GameModel)o).next();

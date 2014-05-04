@@ -1,6 +1,7 @@
 package jeu.controller;
 
 import jeu.bootstrapper.BootStrapperView;
+import jeu.bootstrapper.BootstrapperController;
 import jeu.model.Difficulties;
 import jeu.model.GameModel;
 import jeu.model.Themes;
@@ -15,21 +16,25 @@ import java.awt.event.ActionListener;
 
 public class FPKSController implements ActionListener {
 
+    private BootstrapperController bootstrapperController;
+
     private GameModel gameModel;
 
     private FPKSView fpksView;
 
-    public FPKSController(String nickName, Themes themeSelected, Difficulties difficultySelected) {
+    public FPKSController(BootstrapperController b, String nickName, Themes themeSelected, Difficulties difficultySelected) {
         this.gameModel = new GameModel(nickName, themeSelected, difficultySelected);
+        this.bootstrapperController = b;
     }
 
     public void launchGame() {
-        this.fpksView = new FPKSView(this, this.gameModel);
+        this.fpksView = new FPKSView(this, this.gameModel, this.gameModel.getPlayer().getNickname());
 
     }
 
     public void endGame() {
         System.out.println("\n++++++ Game Ended +++++++\n");
+        this.bootstrapperController.addScore(gameModel.getTheme(), gameModel.getPlayer().getScore());
         //TODO replay
     }
 
@@ -60,5 +65,13 @@ public class FPKSController implements ActionListener {
             this.launchGame();
         }
         */
+    }
+
+    public void replay() {
+        this.bootstrapperController.onNickNameSelected(this.gameModel.getPlayer().getNickname());
+    }
+
+    public void exit() {
+        this.bootstrapperController.exit();
     }
 }

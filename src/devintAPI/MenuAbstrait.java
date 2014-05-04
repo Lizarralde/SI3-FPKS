@@ -229,7 +229,9 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 				optionCourante = (optionCourante + 1) % nbOption;
 				setFocusedButton(optionCourante);
 			}
-            scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
+            if(!this.boutonOption[optionCourante].isVisible()) {
+                scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
+            }
 		}
 		// se d�placer dans les options vers le haut
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -243,7 +245,9 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 					optionCourante = nbOption - 1;
 				setFocusedButton(optionCourante);
 			}
-            scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
+            if(!this.boutonOption[optionCourante].isVisible()) {
+                scrollPane.getViewport().setViewPosition(this.boutonOption[optionCourante].getLocation());
+            }
         }
     }
 

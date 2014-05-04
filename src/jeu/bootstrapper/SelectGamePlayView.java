@@ -26,7 +26,7 @@ public class SelectGamePlayView extends MenuAbstrait {
     private BootstrapperController controller;
 
 	public SelectGamePlayView(BootstrapperController controller) {
-        super(DEFAULT_TITLE);
+        super(DEFAULT_TITLE + " - " + controller.getNickName());
 
         themes = new ArrayList<String>();
 

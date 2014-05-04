@@ -5,6 +5,7 @@ import jeu.model.Difficulties;
 import jeu.model.Themes;
 import jeu.utils.ConfigXML;
 
+import java.security.Key;
 import java.util.*;
 
 
@@ -35,7 +36,7 @@ public class BootStrapperModel {
     private Difficulties difficultySelected;
 
     public BootStrapperModel() {
-        storeDefaultProfiles();
+        //storeDefaultProfiles();
         loadProfiles();
         buildHighScores();
     }
@@ -92,6 +93,26 @@ public class BootStrapperModel {
     }
 
     public void createNewPlayer(String text) {
+        this.profilesDescription.put(text, new HashMap<Themes, Integer>());
+        setNickName(text);
+    }
+
+    public void addScore(Themes t, Integer score) {
+        System.out.println("Ajout score " + score + " au theme " + t + " pour le joueur " + nickName);
+        Map<Themes, Integer> tmp = this.profilesDescription.get(nickName);
+
+        if(tmp == null) {
+            tmp = new HashMap<>();
+        }
+
+        if(tmp.get(t) != null && tmp.get(t) < score) {
+            tmp.put(t, score);
+        }
+        else if(tmp.get(t) == null) {
+            tmp.put(t, score);
+        }
+
+        this.profilesDescription.put(nickName, tmp);
 
     }
 
@@ -115,4 +136,8 @@ public class BootStrapperModel {
         this.highscores = highscores;
     }
 
+    public void storeProfiles() {
+        ConfigXML.definirDossier(KeysKeeper.PATH_RESSOURCES);
+        ConfigXML.store(this.profilesDescription, KeysKeeper.PATH_PROFILES_FILE, KeysKeeper.PATH_PROFILES_VERSION);
+    }
 }
