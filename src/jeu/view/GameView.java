@@ -222,35 +222,38 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         Point w = new Point(fire.x - locationOnScreen.x, fire.y - locationOnScreen.y);
         synchronized (gameObjects){
             Iterator<GameObjectView> gameObjectViewIterator = gameObjects.iterator();
-            while(gameObjectViewIterator.hasNext()){
-                //TODO FIXME
-                /*
-                Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
-                    at java.util.LinkedList$ListItr.checkForComodification(LinkedList.java:953)
-                    at java.util.LinkedList$ListItr.next(LinkedList.java:886)
-                    at jeu.view.GameView.processFireEvent(GameView.java:226)
-                    at jeu.view.GameView.update(GameView.java:180)
-                    |||||||
-                 */
-                GameObjectView gov = gameObjectViewIterator.next();
-                if(this.targetDropThread != null && (gov.getZOrder() == 0) && gov.getType().equals("target") && gov.isHit(w)){
-                    this.hook.validate(gov.getLabel());
-                    gov.doAnimation("hit");
-                    gov.flagForRemoval();
-                    return;
-                } else if(gov.getType().equals("result")){
-                    if((gov.getLabel().equals("Partie terminée"))){
-                        this.removeMouseListener(this.listener);
-                        this.removeMouseMotionListener(this.listener);
-                        this.hook.endGame();
+                while(gameObjectViewIterator.hasNext()){
+                         //TODO FIXME
+                    /*
+                    --> L'exception ne se déclenche UNIQUEMENT quand on bourine le click sur LA BONNE REPONSE
+                    --> un synchronized sur l'iterator fait carrement bugué l'écran MAUVAISE REPONSE (=> tjr vert)
+                    Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
+                        at java.util.LinkedList$ListItr.checkForComodification(LinkedList.java:953)
+                        at java.util.LinkedList$ListItr.next(LinkedList.java:886)
+                        at jeu.view.GameView.processFireEvent(GameView.java:226)
+                        at jeu.view.GameView.update(GameView.java:180)
+                        |||||||
+                     */
+                    GameObjectView gov = gameObjectViewIterator.next();
+                    if(this.targetDropThread != null && (gov.getZOrder() == 0) && gov.getType().equals("target") && gov.isHit(w)){
+                        this.hook.validate(gov.getLabel());
+                        gov.doAnimation("hit");
+                        gov.flagForRemoval();
                         return;
-                    } else if(gov.getLabel().equals("Mauvaise réponse")) {
-                        gameObjects.remove(gov);
-                        this.initializeTargetDropThread();
-                    } else {
-                        this.onNextQuestion();
+                    } else if(gov.getType().equals("result")){
+                        if((gov.getLabel().equals("Partie terminée"))){
+                            this.removeMouseListener(this.listener);
+                            this.removeMouseMotionListener(this.listener);
+                            this.hook.endGame();
+                            return;
+                        } else if(gov.getLabel().equals("Mauvaise réponse")) {
+                            gameObjects.remove(gov);
+                            this.initializeTargetDropThread();
+                        } else {
+                            this.onNextQuestion();
+                        }
                     }
-                }
+
             }
         }
         // No hit, put a bullet decal on the background
