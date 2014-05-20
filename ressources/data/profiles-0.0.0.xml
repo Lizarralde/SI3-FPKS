@@ -1,18 +1,39 @@
 <map>
   <entry>
+    <string>Co</string>
+    <map>
+      <entry>
+        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
+        <int>18</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>GEOGRAPHIE</jeu.model.Themes>
+        <int>18</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
+        <int>17</int>
+      </entry>
+      <entry>
+        <jeu.model.Themes>MATHS</jeu.model.Themes>
+        <int>10</int>
+      </entry>
+    </map>
+  </entry>
+  <entry>
     <string>Francky</string>
     <map>
       <entry>
+        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
+        <int>18</int>
+      </entry>
+      <entry>
         <jeu.model.Themes>GEOGRAPHIE</jeu.model.Themes>
-        <int>13</int>
+        <int>17</int>
       </entry>
       <entry>
         <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
         <int>10</int>
-      </entry>
-      <entry>
-        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
-        <int>18</int>
       </entry>
       <entry>
         <jeu.model.Themes>MATHS</jeu.model.Themes>
@@ -24,8 +45,12 @@
     <string>Mouloud</string>
     <map>
       <entry>
+        <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
+        <int>6</int>
+      </entry>
+      <entry>
         <jeu.model.Themes>MATHS</jeu.model.Themes>
-        <int>10</int>
+        <int>31</int>
       </entry>
     </map>
   </entry>
@@ -33,16 +58,16 @@
     <string>Benjamin</string>
     <map>
       <entry>
+        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
+        <int>8</int>
+      </entry>
+      <entry>
         <jeu.model.Themes>GEOGRAPHIE</jeu.model.Themes>
         <int>10</int>
       </entry>
       <entry>
         <jeu.model.Themes>FRANCAIS</jeu.model.Themes>
         <int>11</int>
-      </entry>
-      <entry>
-        <jeu.model.Themes>ANGLAIS</jeu.model.Themes>
-        <int>8</int>
       </entry>
       <entry>
         <jeu.model.Themes>MATHS</jeu.model.Themes>

@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>am</string>
-    <string>do</string>
-    <string>are</string>
-    <string>call</string>
-    <string>like</string>
+    <string>star</string>
+    <string>light</string>
+    <string>earth</string>
+    <string>movie</string>
+    <string>plate</string>
   </answers>
-  <content>Complète: I ... fine</content>
-  <difficulty>MEDIUM</difficulty>
+  <content>The sun is a ...</content>
+  <difficulty>MOYEN</difficulty>
   <theme>ANGLAIS</theme>
 </jeu.model.Question>

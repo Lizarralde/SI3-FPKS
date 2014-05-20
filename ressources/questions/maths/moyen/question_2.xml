@@ -9,6 +9,6 @@
     <string>30</string>
   </answers>
   <content>16 + 33 = ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>MOYEN</difficulty>
   <theme>MATHS</theme>
 </jeu.model.Question>

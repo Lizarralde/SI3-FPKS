@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>appelle</string>
+    <string>apel</string>
+    <string>apell</string>
+    <string>apelle</string>
+    <string>a pel</string>
+  </answers>
+  <content>Complète : je m'... Rémi</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Italie</string>
+    <string>France</string>
+    <string>Suisse</string>
+    <string>Allemagne</string>
+    <string>Luxembourg</string>
+  </answers>
+  <content>Rome se trouve dans quel pays ?</content>
+  <difficulty>FACILE</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

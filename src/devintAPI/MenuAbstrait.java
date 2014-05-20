@@ -28,6 +28,10 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 	// -------------------------------------------------------
 	// les attributs
 
+    public SIVOXDevint getSivox() {
+        return this.voix;
+    }
+
 	// le nom du jeu
 	protected final String nomJeu;
 
@@ -38,7 +42,7 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 	protected JButton[] boutonOption;
 
 	// le nombre d'options
-	private int nbOption;
+	protected int nbOption;
 
     private JScrollPane scrollPane;
 
@@ -267,7 +271,7 @@ public abstract class MenuAbstrait extends DevintFrameListener implements
 	}
 
 	// mettre le focus sur une option
-	private void setFocusedButton(int i) {
+	protected void setFocusedButton(int i) {
 		voix.playShortText(boutonOption[i].getText());
 		boutonOption[i].setBackground(backgroundColor);
 		boutonOption[i].setForeground(foregroundColor);

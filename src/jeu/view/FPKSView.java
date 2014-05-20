@@ -2,6 +2,7 @@ package jeu.view;
 
 import jeu.controller.FPKSController;
 import jeu.model.GameModel;
+import t2s.SIVOXDevint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,12 +22,14 @@ public class FPKSView extends JFrame {
 
 
 
-    public FPKSView(FPKSController controller, Observable o, String nickName) {
+    public FPKSView(FPKSController controller, SIVOXDevint sivox, Observable o, String nickName) {
         super("FPKS - " + nickName);
 
         this.controller = controller;
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        AudioPlayerThread.sivox = sivox;
 
         this.gameView = new GameView(this.controller);
         getContentPane().add(gameView);

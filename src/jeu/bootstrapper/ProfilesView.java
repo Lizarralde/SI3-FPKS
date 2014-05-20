@@ -1,6 +1,7 @@
 package jeu.bootstrapper;
 
 import devintAPI.MenuAbstrait;
+import jeu.KeysKeeper;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,6 +14,10 @@ public class ProfilesView extends MenuAbstrait {
     public static List<String> profilesNames = new ArrayList<String>();
 
     private BootstrapperController bootstrapperController;
+
+
+    public static final String PATH_SON = KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS + "selectName.wav";
+    public static final String PATH_REGLES = KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS + "selectName.wav";
 
     public ProfilesView(BootstrapperController bootstrapperController) {
         super(TITLE);
@@ -41,11 +46,11 @@ public class ProfilesView extends MenuAbstrait {
 
     @Override
     protected String wavAccueil() {
-        return "../ressources/sons/accueil.wav";
+        return PATH_SON;
     }
 
     @Override
     protected String wavRegleJeu() {
-        return  "../ressources/sons/accueil.wav";
+        return PATH_REGLES;
     }
 }

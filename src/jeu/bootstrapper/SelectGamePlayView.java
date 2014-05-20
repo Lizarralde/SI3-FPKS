@@ -9,6 +9,7 @@
 package jeu.bootstrapper;
 
 import devintAPI.MenuAbstrait;
+import jeu.KeysKeeper;
 import jeu.model.Themes;
 
 import java.awt.event.KeyEvent;
@@ -19,6 +20,8 @@ import java.util.List;
 public class SelectGamePlayView extends MenuAbstrait {
 
     public static final String DEFAULT_TITLE = "FPKS";
+    public static final String PATH_SON = KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS + "theme_ini.wav";
+    public static final String PATH_RULES = KeysKeeper.PATH_RESSOURCES + KeysKeeper.PATH_SONS + "aideJeu.wav";
 
     private List<String> themes = new ArrayList<String>();
     private List<String> difficulties = new ArrayList<String>();
@@ -46,7 +49,7 @@ public class SelectGamePlayView extends MenuAbstrait {
 	}
 
 	protected String[] nomOptions() {
-		String[] noms = {"Jouer","Theme", "Difficulté", "Aide","Quitter"};
+		String[] noms = {"Jouer","Francais", "Facile", "Aide","Quitter"};
 		return noms;
 	}
 
@@ -62,7 +65,7 @@ public class SelectGamePlayView extends MenuAbstrait {
             case 2 :
                 System.out.println("Difficulté");break;
             case 3 :
-                System.out.println("Aide");break;
+                new AideView();System.out.println("Aide");break;
 		    case 4 :
                 System.exit(0);
 		    default:
@@ -71,17 +74,18 @@ public class SelectGamePlayView extends MenuAbstrait {
 	} 
 
 	protected  String wavAccueil() {
-		return "../ressources/sons/accueil.wav";
+		return PATH_SON;
 	}
 
 	protected  String wavRegleJeu() {
-		return "../ressources/sons/accueil.wav";
+		return PATH_RULES;
 	}
 
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
 
         if(optionCourante == 1) {
+            this.voix.stop();
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 themes.add(0,themes.get(themes.size()-1));
                 themes.remove(themes.size()-1);
@@ -93,10 +97,11 @@ public class SelectGamePlayView extends MenuAbstrait {
 
             nomOptions[optionCourante] = themes.get(0);
             boutonOption[optionCourante].setText(themes.get(0));
-            this.voix.playShortText(boutonOption[optionCourante].getText());
+            this.voix.playText(boutonOption[optionCourante].getText());
         }
 
-        if(optionCourante == 2) {
+        else if(optionCourante == 2) {
+            this.voix.stop();
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 difficulties.add(0,difficulties.get(difficulties.size()-1));
                 difficulties.remove(difficulties.size()-1);
@@ -108,7 +113,10 @@ public class SelectGamePlayView extends MenuAbstrait {
 
             nomOptions[optionCourante] = difficulties.get(0);
             boutonOption[optionCourante].setText(difficulties.get(0));
-            this.voix.playShortText(boutonOption[optionCourante].getText());
+            this.voix.playText(boutonOption[optionCourante].getText());
+
         }
+
+
     }
 }

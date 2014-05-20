@@ -89,9 +89,16 @@ public class GameModel extends Observable {
         this.setQuestions(new ArrayList<Question>());
         this.setSounds(new HashMap<Question, String>());
 
-        File[] files = new File(KeysKeeper.PATH_RESSOURCES
+        String path = KeysKeeper.PATH_RESSOURCES
                 + KeysKeeper.PATH_QUESTION + theme.getPath().toLowerCase()
-                + "/" + difficulty.getPath().toLowerCase()).listFiles();
+                + "/" + difficulty.getPath().toLowerCase();
+
+
+        System.out.println("Path used : " + path);
+
+        File[] files = new File(path).listFiles();
+
+
 
         for (int i = 0; i < files.length; i++) {
 
@@ -127,8 +134,8 @@ public class GameModel extends Observable {
                 .getContent());
         map.put("answers", this.getQuestions().get(this.getIndex())
                 .getAnswers());
-        map.put("path",
-                this.getSounds().get(this.getQuestions().get(this.getIndex())));
+        map.put("path",this.getQuestions().get(this.getIndex()).getContent());
+               // this.getSounds().get(this.getQuestions().get(this.getIndex())));
         this.setChanged();
         this.notifyObservers(map);
     }

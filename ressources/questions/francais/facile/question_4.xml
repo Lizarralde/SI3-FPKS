@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>ciel</string>
+    <string>siel</string>
+    <string>cielle</string>
+    <string>si elle</string>
+    <string>cièle</string>
+  </answers>
+  <content>Complète : Le ... est bleu</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

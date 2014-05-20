@@ -94,7 +94,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
         if(arg == null){
             Map<String, Object> w = new HashMap<>();
             w.put("id", -10);
-            w.put("label", "Partie terminée");
+            w.put("label", "Partie terminee");
             w.put("type", "result");
             this.addNewObject(w);
             new Thread(new AudioPlayerThread(RES_SONS + "/game_win.wav")).start();
@@ -138,7 +138,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     if((Boolean)state.get("state")){
                         Map<String, Object> w = new HashMap<>();
                         w.put("id", -11);
-                        w.put("label", "Partie terminée");
+                        w.put("label", "Partie terminee");
                         w.put("type", "result");
                         this.stopTargetDropThread();
                         this.addNewObject(w);
@@ -148,7 +148,7 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                     Boolean isOk = (Boolean)state.get("state");
                     Map<String, Object> w = new HashMap<>();
                     w.put("id", -10);
-                    w.put("label", isOk?"Bonne réponse":"Mauvaise réponse");
+                    w.put("label", isOk?"Bonne reponse":"Mauvaise reponse");
                     w.put("type", "result");
                     this.stopTargetDropThread();
                     if (!isOk) {
@@ -241,12 +241,12 @@ public class GameView extends JPanel implements Observer, TargetDropListener, Ne
                         gov.flagForRemoval();
                         return;
                     } else if(gov.getType().equals("result")){
-                        if((gov.getLabel().equals("Partie terminée"))){
+                        if((gov.getLabel().equals("Partie terminee"))){
                             this.removeMouseListener(this.listener);
                             this.removeMouseMotionListener(this.listener);
                             this.hook.endGame();
                             return;
-                        } else if(gov.getLabel().equals("Mauvaise réponse")) {
+                        } else if(gov.getLabel().equals("Mauvaise reponse")) {
                             gameObjects.remove(gov);
                             this.initializeTargetDropThread();
                         } else {

@@ -9,6 +9,6 @@
     <string>capittal</string>
   </answers>
   <content>Complète : Paris est la ... de la France</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>MOYEN</difficulty>
   <theme>FRANCAIS</theme>
 </jeu.model.Question>

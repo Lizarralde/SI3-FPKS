@@ -9,6 +9,6 @@
     <string>aimons</string>
   </answers>
   <content>Complète : j' ... ce jeu !</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>MOYEN</difficulty>
   <theme>FRANCAIS</theme>
 </jeu.model.Question>

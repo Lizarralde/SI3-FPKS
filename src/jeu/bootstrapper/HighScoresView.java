@@ -45,18 +45,29 @@ public class HighScoresView extends JFrame {
         //The following line enables to use scrolling tabs.
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        this.setVisible(true);
-        this.pack();
+        setVisible(true);
+        this.setSize((int) getToolkit().getScreenSize().getWidth(), ((int) getToolkit().getScreenSize().getHeight() - 40));
+
+        setExtendedState(Frame.MAXIMIZED_BOTH);
+        setFocusable(true);
+        pack();
+
+        setLocationRelativeTo(null);
     }
 
     private JComponent makePanel(String place, String nickName, String score) {
         JComponent panel = new JPanel(false);
 
         panel.setLayout(new GridLayout(1,3));
+        Font fonteBouton = new Font("Tahoma", 1, 56);
 
         JLabel placeLabel = new JLabel(place);
         JLabel nickNameLabel = new JLabel(nickName);
         JLabel scoreLabel = new JLabel(score);
+
+        placeLabel.setFont(fonteBouton);
+        nickNameLabel.setFont(fonteBouton);
+        scoreLabel.setFont(fonteBouton);
 
         placeLabel.setHorizontalAlignment(JLabel.CENTER);
         nickNameLabel.setHorizontalAlignment(JLabel.CENTER);

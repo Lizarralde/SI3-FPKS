@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Blue</string>
+    <string>Red</string>
+    <string>Green</string>
+    <string>Yellow</string>
+    <string>Gray</string>
+  </answers>
+  <content>De quelle couleur (en anglais) est le ciel ?</content>
+  <difficulty>MOYEN</difficulty>
+  <theme>ANGLAIS</theme>
+</jeu.model.Question>

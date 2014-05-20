@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Ville</string>
+    <string>Désert</string>
+    <string>Continent</string>
+    <string>Planète</string>
+    <string>Forêt</string>
+  </answers>
+  <content>Complète : Paris est un(e) ...</content>
+  <difficulty>MOYEN</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

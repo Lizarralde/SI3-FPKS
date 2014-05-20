@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>bureau</string>
+    <string>buro</string>
+    <string>burrau</string>
+    <string>burreaux</string>
+    <string>burot</string>
+  </answers>
+  <content>Complète : Le ... du professeur.</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

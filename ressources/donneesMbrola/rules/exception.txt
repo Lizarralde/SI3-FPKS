@@ -79,6 +79,8 @@ T [[ psychia ]] -> p s i k j a				## psychiatre
 ## règles sur eur en fin de mot
 [[ onsieur ]] T -> 2 s i 2				## monsieur
 [[ essieurs ]] T  -> e s i 2				## monsieur
+[[ pommiers ]] T -> p o m i e
+[[ per ]] T -> p E R
 
 ## règles sur us en fin de mot
 T [[ processus ]] T -> p R o s E s y s

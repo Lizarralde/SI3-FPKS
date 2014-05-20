@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>prendrons</string>
+    <string>prendons</string>
+    <string>prends</string>
+    <string>prenon</string>
+    <string>prenom</string>
+  </answers>
+  <content>Complète : Nous ... du dessert</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>Vert</string>
-    <string>Bleu</string>
-    <string>Orange</string>
-    <string>Beige</string>
-    <string>Rouge</string>
+    <string>Hello !</string>
+    <string>Goodnight !</string>
+    <string>Goodevening !</string>
+    <string>Good afternoon !</string>
+    <string>Good bye !</string>
   </answers>
-  <content>Quelle couleur est "green" ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <content>Traduis : "Bonjour !"</content>
+  <difficulty>MOYEN</difficulty>
   <theme>ANGLAIS</theme>
 </jeu.model.Question>

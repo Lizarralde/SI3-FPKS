@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Asie</string>
+    <string>Europe</string>
+    <string>Afrique</string>
+    <string>Amérique</string>
+	<string>Océanie</string>
+  </answers>
+  <content>La chine est en ...</content>
+  <difficulty>FACILE</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

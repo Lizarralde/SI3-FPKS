@@ -9,6 +9,6 @@
     <string>planet</string>
   </answers>
   <content>Complète : La Terre est une ...</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>MOYEN</difficulty>
   <theme>FRANCAIS</theme>
 </jeu.model.Question>

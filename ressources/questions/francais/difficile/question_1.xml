@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>vocabulaire</string>
+    <string>vaucabulaire</string>
+    <string>vocabulère</string>
+    <string>vocabullaire</string>
+    <string>voquabulère</string>
+  </answers>
+  <content>Complète : Le ... français</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

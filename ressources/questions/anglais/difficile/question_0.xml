@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>am</string>
+    <string>do</string>
+    <string>think</string>
+    <string>have</string>
+    <string>touch</string>
+  </answers>
+  <content>I ... a teen</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>ANGLAIS</theme>
+</jeu.model.Question>

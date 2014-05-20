@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>pommes</string>
+    <string>paumes</string>
+    <string>pome</string>
+    <string>paumme</string>
+    <string>raisins</string>
+  </answers>
+  <content>Complète : Les ... poussent sur les pommiers !</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

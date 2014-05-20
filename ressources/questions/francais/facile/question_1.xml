@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>jeu</string>
+    <string>je</string>
+    <string>jheu</string>
+    <string>jeuheu</string>
+    <string>jeut</string>
+  </answers>
+  <content>Complète : Ce ... est super !</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>avaient</string>
+    <string>avait</string>
+    <string>avez</string>
+    <string>avé</string>
+    <string>avais</string>
+  </answers>
+  <content>Complète : Elles ... raison !</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

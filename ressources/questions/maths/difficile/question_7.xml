@@ -9,6 +9,6 @@
     <string>154</string>
   </answers>
   <content>177 + 84 = ?</content>
-  <difficulty>HARD</difficulty>
+  <difficulty>DIFFICILE</difficulty>
   <theme>MATHS</theme>
 </jeu.model.Question>

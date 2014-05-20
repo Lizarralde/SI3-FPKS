@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>plays</string>
+    <string>play</string>
+    <string>are</string>
+    <string>has</string>
+    <string>have</string>
+  </answers>
+  <content>He ... in a soccer team</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>ANGLAIS</theme>
+</jeu.model.Question>

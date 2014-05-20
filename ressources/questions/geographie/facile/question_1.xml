@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Ethiopie</string>
+    <string>Italie</string>
+    <string>France</string>
+    <string>Allemagne</string>
+    <string>Espagne</string>
+  </answers>
+  <content>Trouve l'intrus !</content>
+  <difficulty>FACILE</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

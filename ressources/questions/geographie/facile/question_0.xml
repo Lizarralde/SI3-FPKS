@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Nice</string>
+    <string>Paris</string>
+    <string>Menton</string>
+    <string>Antibes</string>
+    <string>Cannes</string>
+  </answers>
+  <content>Nous habitons ... ?</content>
+  <difficulty>FACILE</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

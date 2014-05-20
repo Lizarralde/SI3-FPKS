@@ -17,7 +17,7 @@ public class RetryView extends MenuAbstrait {
 
     @Override
     protected String[] nomOptions() {
-        return new String[]{"Rejouer","Quitter"};
+        return new String[]{"Rejouer","Changer thème", "Quitter"};
     }
 
     @Override
@@ -25,10 +25,13 @@ public class RetryView extends MenuAbstrait {
         if(i == 0) {
             this.fpksController.replay();
         }
-        else {
-            this.fpksController.exit();
+       if( i ==1) {
+           this.fpksController.changeTheme();
         }
-    }
+        else {
+           this.fpksController.exit();
+        }
+}
 
     @Override
     protected String wavAccueil() {

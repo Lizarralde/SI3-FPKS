@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Quel</string>
+    <string>Quelle</string>
+    <string>Quels</string>
+    <string>Quelles</string>
+    <string>Qu'elle</string>
+  </answers>
+  <content>Complète : ... est ton numéro ?</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

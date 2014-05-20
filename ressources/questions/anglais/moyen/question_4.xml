@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>Sun</string>
-    <string>Moon</string>
-    <string>Light</string>
-    <string>Day</string>
-    <string>Star</string>
+    <string>door</string>
+    <string>done</string>
+    <string>dear</string>
+    <string>ding</string>
+    <string>dong</string>
   </answers>
-  <content>Comment dit-on "soleil" ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <content>Traduis : "porte"</content>
+  <difficulty>MOYEN</difficulty>
   <theme>ANGLAIS</theme>
 </jeu.model.Question>

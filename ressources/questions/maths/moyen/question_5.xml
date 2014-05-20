@@ -9,6 +9,6 @@
     <string>64</string>
   </answers>
   <content>14 + 28 = ?</content>
-  <difficulty>MEDIUM</difficulty>
+  <difficulty>MOYEN</difficulty>
   <theme>MATHS</theme>
 </jeu.model.Question>

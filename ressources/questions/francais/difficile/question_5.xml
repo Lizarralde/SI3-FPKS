@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>ont</string>
+    <string>on</string>
+    <string>ons</string>
+    <string>zons</string>
+    <string>sont</string>
+  </answers>
+  <content>Complète : ils ... pris le bus</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

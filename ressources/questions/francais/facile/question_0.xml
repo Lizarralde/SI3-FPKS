@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>garçons</string>
+    <string>garsson</string>
+    <string>garsons</string>
+    <string>garssons</string>
+    <string>garçom</string>
+  </answers>
+  <content>Complète : Les ... et les filles.</content>
+  <difficulty>FACILE</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

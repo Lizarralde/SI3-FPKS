@@ -4,6 +4,7 @@ import devintAPI.MenuAbstrait;
 import jeu.controller.FPKSController;
 import jeu.model.Difficulties;
 import jeu.model.Themes;
+import t2s.SIVOXDevint;
 
 /**
  * Created by user on 19/04/14.
@@ -27,8 +28,14 @@ public class BootstrapperController {
         loadOrNewPlayerView = new LoadOrNewPlayerView(this);
     }
 
+    public SIVOXDevint getVoix() {
+        return this.loadOrNewPlayerView.getSivox();
+    }
+
     public void setLoadOrNewPlayerView(boolean newPlayer) {
-        this.loadOrNewPlayerView.dispose();
+
+        //this.loadOrNewPlayerView.dispose();
+
         if(newPlayer) {
             newPlayerView = new NewPlayerView(this);
         }
@@ -41,8 +48,8 @@ public class BootstrapperController {
     public void createNewPlayer(String nickNameOfNewPlayer) {
         this.bootStrapperModel.createNewPlayer(nickNameOfNewPlayer);
 
-        this.newPlayerView.dispose();
-        this.loadOrNewPlayerView.dispose();
+       // this.newPlayerView.dispose();
+        //this.loadOrNewPlayerView.dispose();
 
         onNickNameSelected(nickNameOfNewPlayer);
     }
@@ -51,11 +58,11 @@ public class BootstrapperController {
         this.bootStrapperModel.setNickName(nickName);
 
         if(this.loadOrNewPlayerView != null) {
-            this.loadOrNewPlayerView.dispose();
+           // this.loadOrNewPlayerView.dispose();
         }
 
         if(this.profilesView != null) {
-            this.profilesView.dispose();
+           // this.profilesView.dispose();
         }
 
         this.selectGamePlay = new SelectGamePlayView(this);
@@ -63,7 +70,7 @@ public class BootstrapperController {
 
     public void launchGame(String theme, String difficulty) {
 
-        this.selectGamePlay.dispose();
+        //this.selectGamePlay.dispose();
 
         System.out.println("Launch game with : " + theme + " - " + difficulty + " _ " + getNickName());
 
@@ -71,10 +78,11 @@ public class BootstrapperController {
 
         this.bootStrapperModel.setDifficultySelected(Difficulties.valueOf(difficulty.toUpperCase()));
 
-        FPKSController f = new FPKSController(this,this.bootStrapperModel.getNickName(), this.bootStrapperModel.getThemeSelected(),
+        FPKSController f = new FPKSController(this,this.selectGamePlay.getSivox(), this.bootStrapperModel.getNickName(),
+                this.bootStrapperModel.getThemeSelected(),
                 this.bootStrapperModel.getDifficultySelected());
 
-        this.selectGamePlay.dispose();
+        //this.selectGamePlay.dispose();
 
         f.launchGame();
     }

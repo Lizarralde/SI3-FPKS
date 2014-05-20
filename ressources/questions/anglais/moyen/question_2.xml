@@ -2,13 +2,13 @@
   <changed>false</changed>
   <obs/>
   <answers>
-    <string>15</string>
-    <string>12</string>
-    <string>50</string>
-    <string>31</string>
-    <string>5</string>
+    <string>twelve</string>
+    <string>twoteen</string>
+    <string>tentwo</string>
+    <string>eleven</string>
+    <string>ten</string>
   </answers>
-  <content>Traduire: fifteen</content>
-  <difficulty>MEDIUM</difficulty>
+  <content>Traduire: 12</content>
+  <difficulty>MOYEN</difficulty>
   <theme>ANGLAIS</theme>
 </jeu.model.Question>

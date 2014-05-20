@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>faudra</string>
+    <string>faudras</string>
+    <string>faudrat</string>
+    <string>fut</string>
+    <string>fodra</string>
+  </answers>
+  <content>Complète : Il ... acheter des Chocapic's !</content>
+  <difficulty>MOYEN</difficulty>
+  <theme>FRANCAIS</theme>
+</jeu.model.Question>

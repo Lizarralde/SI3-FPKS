@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>Ronde</string>
+    <string>Carrée</string>
+    <string>Plate</string>
+    <string>Rectangulaire</string>
+    <string>Triangulaire</string>
+  </answers>
+  <content>Complète: La terre est ...</content>
+  <difficulty>MOYEN</difficulty>
+  <theme>GEOGRAPHIE</theme>
+</jeu.model.Question>

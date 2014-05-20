@@ -1,0 +1,14 @@
+<jeu.model.Question>
+  <changed>false</changed>
+  <obs/>
+  <answers>
+    <string>42</string>
+    <string>6</string>
+    <string>16</string>
+    <string>43</string>
+    <string>44</string>
+  </answers>
+  <content>Traduire: fourty two</content>
+  <difficulty>DIFFICILE</difficulty>
+  <theme>ANGLAIS</theme>
+</jeu.model.Question>
